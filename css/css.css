@@ -8,6 +8,7 @@ body{
   background: -moz-radial-gradient(#e2e2e2, #313131); /* For Firefox 3.6 to 15 */
   background: radial-gradient(#e2e2e2, #313131); /* Standard syntax */
   text-align: center;
+  z-index: 0;
 }
 
 header{
@@ -15,12 +16,21 @@ header{
   background: -o-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Opera 11.6 to 12.0 */
   background: -moz-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right,#129ef7,rgba(0,0,0,0)); /* Standard syntax */
+  position: relative;
+  transition: 5s background, 5s position; /**TODO transition*/
 }
+
+
+
+#header{
+  text-align: center;
+}
+
 
 nav{
   border: 1px solid red;
-  height : 75px;
-  display: block;
+  display: inline-block;
+  margin: 5px auto;
   position: relative;
 
 }
@@ -29,6 +39,7 @@ nav ul{
   list-style: none;
   display: inline-block;
   padding: 0px;
+  margin: 0;
   border : 1px solid yellow;
 
 
@@ -38,6 +49,42 @@ nav ul li {
   display: inline;
   border: 1px solid white;
 }
+
+
+/** display of nav/header when minimized */
+
+
+header.min img{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  float : left;
+  margin: 10px;
+}
+
+header.min{
+  z-index: +1;
+  text-align: left;
+  position: fixed;
+  top : 0;
+  left : 0;
+  right : 0;
+  background :-webkit-radial-gradient(#129ef7,#129ef7) /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#129ef7,#129ef7); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#129ef7,#129ef7); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#129ef7,#129ef7);
+}
+
+header.min #header{
+  display: block;
+  margin : 0 auto;
+  width : 80%;
+}
+
+header.min h1{
+  margin: 0 auto;
+}
+
 
 #container{
   display: block;
