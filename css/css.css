@@ -1,69 +1,52 @@
 body{
-  background-color: #FF8000;
-  color : #000;
-  font-family: sans-serif;
-  margin: auto;
+  margin : 0 auto;
+  padding : 5px;
+  width : 95vw;;
+  min-height: 100vh;
+  background :-webkit-radial-gradient(#e2e2e2, #313131); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#e2e2e2, #313131); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#e2e2e2, #313131); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#e2e2e2, #313131); /* Standard syntax */
   text-align: center;
 }
-
 
 header{
-  display: inline-block;
-  text-align: center;
-  border-radius: 15px;
-  background: rgba(0, 0, 0, 0.3);
-  width: 90%;
-}
-
-header img{
-  display: inline-block;
-  margin: 10px;
-  border-radius: 5px;
-  float : left;
-}
-
-header #titre{
-  display: inline-block;
-  margin : 10px ;
+  background: -webkit-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Opera 11.6 to 12.0 */
+  background: -moz-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right,#129ef7,rgba(0,0,0,0)); /* Standard syntax */
 }
 
 nav{
-  display: inline-block;
-  width : 80vw;
-  background: red;
-  padding: 0px 5px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border: 1px solid red;
+  height : 75px;
+  display: block;
+  position: relative;
+
 }
 
 nav ul{
   list-style: none;
-  display: inline-flex;
-  padding : 0;
-  margin: 0;
-}
-
-nav ul li{
   display: inline-block;
-  background: white;
-  margin: 0px;
-  padding: 5px;
-  border-bottom-right-radius:5px;
-  border-left: 3px inset;
-  border-bottom: 3px outset;
-  border-top: 3px inset;
+  padding: 0px;
+  border : 1px solid yellow;
+
+
 }
 
-nav ul li[selected]{
-  background: red;
-  border-top: 3px inset;
-  border-bottom: none;
+nav ul li {
+  display: inline;
+  border: 1px solid white;
 }
 
-section{
-  border : 1px solid red;
-  padding : 5px;
-  display: inline-block;
-  width : 80vw;
-  text-align: justify;
+#container{
+  display: block;
+  border : 1px solid black;
+}
+
+footer{
+  background: #313131;
+  padding :5px
+  margin : 0px;
+  display: block;
 }
