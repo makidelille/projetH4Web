@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/connection.css">
+    <script src="js/master.js"></script>
+  </head>
+  <body>
+    <header id="mainHeader">
+      <img  src="img/logo.png" alt="" height="200px" width="200px" onclick="scrollToTop()">
+      <div id="headerText">
+        <h1>Photos et vidéos <sub><i>Network</i></sub></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="videos.html">Vidéos</a></li>
+          <li><a href="about.html">A propos</a></li>
+          <li selected><a href="#">Se connecter</a></li>
+        </ul>
+      </nav>
+    </div>
+    </header>
+
+    <div id="container">
+      <section id="login">
+      <form action="login">
+        <label for="name">Nom  :</label>
+        <input type="text" id="name"/>
+
+        <label for="mdp">Mot de passe  :</label>
+        <input type="password" id="mdp"/>
+
+        <button type="button" name="logBtn">Login</button>
+      </form>
+      </section>
+      <section id="register">
+      <form action="register">
+        <label for="name">Nom  :</label>
+        <input type="text" id="name"/>
+
+        <label for="mdp">Mot de passe  :</label>
+        <input type="password" id="mdp"/>
+
+        <label for="mdp">confirmer mot de passe  :</label>
+        <input type="password" id="mdp"/>
+
+        <button type="button" name="regBtn">register</button>
+      </form>
+      </section>
+    </div>
+  <footer>
+    <p>
+      fait par <a href="about.html">julien</a>
+    </p>
+  </footer>
+
+  </body>
+</html>

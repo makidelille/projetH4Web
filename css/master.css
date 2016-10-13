@@ -1,39 +1,46 @@
 body{
   margin : 0 auto;
   padding : 5px;
-  width : 95vw;;
-  min-height: 100vh;
+  width : 95vw;
+  text-align: center;
+  z-index: 0;
+  font-family: sans-serif;
+  position: relative;
   background :-webkit-radial-gradient(#e2e2e2, #313131); /* Safari 5.1 to 6.0 */
   background: -o-radial-gradient(#e2e2e2, #313131); /* For Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(#e2e2e2, #313131); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(#e2e2e2, #313131); /* Standard syntax */
-  text-align: center;
-  z-index: 0;
+  background: radial-gradient(rgba(#E2E2E2,.2), #313131); /* Standard syntax */
 }
 
 #mainHeader{
-  background: -webkit-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Opera 11.6 to 12.0 */
-  background: -moz-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right,#129ef7,rgba(0,0,0,0)); /* Standard syntax */
+  background: -webkit-linear-gradient(to right, #129ef7,#129ef7,rgba(0,0,0,0)); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(to right, #129ef7,#129ef7,rgba(0,0,0,0)); /* For Opera 11.6 to 12.0 */
+  background: -moz-linear-gradient(to right, #129ef7,#129ef7,rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right,#129ef7,#129ef7,rgba(0,0,0,0)); /* Standard syntax */
   background-size: 200% 1px;
   background-position: 100% 0;
-  position: relative;
+  position: fixed;
   border-bottom: 2px solid black;
-  transition: 2s background-position;
+  transition: 0.5s background-position, 2s top;
+  top : 0;
+  left: 0;
+  right : 0;
+  display: block;
+  z-index: +10;
 }
 
 #mainHeader img{
   display: inline-block;
   margin : 10px 100px;
   transition: 2s width, 2s height, 2s margin;
+
 }
 
 #headerText{
   text-align: center;
 }
 
-nav{
+#mainHeader nav{
   display: inline-block;
   margin: 5px auto 0px auto;;
   position: relative;
@@ -46,7 +53,7 @@ nav{
 
 }
 
-nav ul{
+#mainHeader nav ul{
   list-style: none;
   display: inline-flex;
   padding: 0px;
@@ -55,46 +62,49 @@ nav ul{
 
 }
 
-nav ul li {
+#mainHeader nav ul li {
   display: inline;
   border: 1px solid white;
 
   margin: 0;
   padding: 5px 5px;
+  background: linear-gradient(to right,#1f1f1f,#1f1f1f, rgba(0,0,0,0),  rgba(0,0,0,0) );
+  background-position: 100%;
+  background-size: 200% 1px;
+  transition: 1s background-position;
 }
 
-nav ul li:hover{
-  background: #1f1f1f;
+#mainHeader nav ul li:hover{
+  background-position: 0;
 }
 
-nav ul li[selected]{
-  background: black;
+#mainHeader nav ul li[selected]{
+  background: radial-gradient(#313131,#1f1f1f);
   border-bottom: none;
 }
 
-nav ul li a{
+#mainHeader nav ul li a{
   color : #e2e2e2;
   text-decoration: none;
 }
 
 
 /** display of nav/header when minimized */
-
+#mainHeader.min{
+  z-index: +10;
+  position: fixed;
+  top : 0%;
+  left : 0;
+  right : 0;
+  background-position: 0%;
+}
 
 #mainHeader.min img{
   display: inline-block;
   height: 50px;
   width: 50px;
-  margin: 0px 100% -60px 10px
-}
-
-#mainHeader.min{
-  z-index: +10;
-  position: fixed;
-  top : 0;
-  left : 0;
-  right : 0;
-  background-position: 0%;
+  margin: 0px 100% -60px 10px;
+  cursor : pointer;
 }
 
 #mainHeader.min #header{
@@ -109,19 +119,30 @@ nav ul li a{
 
 
 #container{
-  margin: 0px auto;
+  margin: 344px auto 0px auto;
   display: inline-block;
   border-left: 2px solid black;
   border-right: 2px solid black;
   border-bottom : 2px solid black;
+  transition: 2s margin;
+  position: relative;
 }
 
-footer{
+#container.down{
+  margin: 101px auto 0px auto;
+}
 
+
+
+footer{
   display: block;
   background: #313131;
   padding :5px;
   margin : 0px;
   display: block;
   color : #e2e2e2;
+}
+
+footer a{
+    color : #e2e2e2;
 }
