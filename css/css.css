@@ -11,36 +11,46 @@ body{
   z-index: 0;
 }
 
-header{
+#mainHeader{
   background: -webkit-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Opera 11.6 to 12.0 */
   background: -moz-linear-gradient(to right, #129ef7,rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right,#129ef7,rgba(0,0,0,0)); /* Standard syntax */
+  background-size: 200% 1px;
+  background-position: 100% 0;
   position: relative;
-  transition: 5s background, 5s position; /**TODO transition*/
+  border-bottom: 2px solid black;
+  transition: 2s background-position;
 }
 
+#mainHeader img{
+  display: inline-block;
+  margin : 10px 100px;
+  transition: 2s width, 2s height, 2s margin;
+}
 
-
-#header{
+#headerText{
   text-align: center;
 }
 
-
 nav{
-  border: 1px solid red;
   display: inline-block;
-  margin: 5px auto;
+  margin: 5px auto 0px auto;;
   position: relative;
+  background:  rgba(48,48,48,.8);
+  padding: 0px;
+  border : 3px outset;
+  border-bottom: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 
 }
 
 nav ul{
   list-style: none;
-  display: inline-block;
+  display: inline-flex;
   padding: 0px;
-  margin: 0;
-  border : 1px solid yellow;
+  margin: 0px;
 
 
 }
@@ -48,52 +58,70 @@ nav ul{
 nav ul li {
   display: inline;
   border: 1px solid white;
+
+  margin: 0;
+  padding: 5px 5px;
+}
+
+nav ul li:hover{
+  background: #1f1f1f;
+}
+
+nav ul li[selected]{
+  background: black;
+  border-bottom: none;
+}
+
+nav ul li a{
+  color : #e2e2e2;
+  text-decoration: none;
 }
 
 
 /** display of nav/header when minimized */
 
 
-header.min img{
+#mainHeader.min img{
   display: inline-block;
   height: 50px;
   width: 50px;
-  float : left;
-  margin: 10px;
+  margin: 0px 100% -60px 10px
 }
 
-header.min{
-  z-index: +1;
-  text-align: left;
+#mainHeader.min{
+  z-index: +10;
   position: fixed;
   top : 0;
   left : 0;
   right : 0;
-  background :-webkit-radial-gradient(#129ef7,#129ef7) /* Safari 5.1 to 6.0 */
-  background: -o-radial-gradient(#129ef7,#129ef7); /* For Opera 11.6 to 12.0 */
-  background: -moz-radial-gradient(#129ef7,#129ef7); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(#129ef7,#129ef7);
+  background-position: 0%;
 }
 
-header.min #header{
+#mainHeader.min #header{
   display: block;
   margin : 0 auto;
   width : 80%;
 }
 
-header.min h1{
+#mainHeader.min h1{
   margin: 0 auto;
 }
 
 
 #container{
-  display: block;
-  border : 1px solid black;
+  margin: 0px auto;
+  display: inline-block;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom : 2px solid black;
 }
 
 footer{
+
+  display: block;
   background: #313131;
-  padding :5px
+  padding :5px;
   margin : 0px;
   display: block;
+  color : #e2e2e2;
 }

@@ -1,8 +1,6 @@
 section{
-  width : 90%;
   margin: 5px auto;
   padding :5px;
-  border : 1px solid red;
   display: block;
   position: relative;
 }
@@ -16,19 +14,27 @@ section header{
 }
 
 article {
-  border :1px solid pink;
-
+  display: inline-block;
+  width : 90%;
+  position: relative;
 }
 
 article figure{
   display: inline-block;
-  border : 1px  solid blue;
+  padding : 5px;
   background: #e5e5e5;
   border-radius: 5px;
+  transition: transform 0.5s;
+  z-index: +5;
+
+}
+
+article figure:hover{
+  transform: scale(1.5,1.5);
+  animation: 0.5s hoverFigure;
 }
 
 section aside{
-  border : 1px solid cyan;
   display: inline-block;
   position: absolute;
   bottom: 0;
@@ -37,6 +43,9 @@ section aside{
   margin: 5px;
 }
 
-header{
-  border : 1px solid green;
+@keyframes hoverFigure {
+  0% { transform: scale(1,1) rotate(0deg);}
+  25% {transform: scale(1.125,1.125) rotate(30deg);}
+  75% {transform: scale(1.375,1.375) rotate(-30deg);}
+  100% { transform: scale(1.5,1.5) rotate(0deg);}
 }

@@ -3,6 +3,9 @@ projet dans le cadre du dev Web h4 iti
 
 photo & video
 
+  ajouter "media" (photo/video)
+  commenter "media"
+  se connecter
 
 couleur :
   bleu :  #129ef7
