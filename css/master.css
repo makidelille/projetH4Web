@@ -2,6 +2,7 @@ body{
   margin : 0 auto;
   padding : 5px;
   width : 95vw;
+  min-height: 100vh;
   text-align: center;
   z-index: 0;
   font-family: "open sans";
@@ -119,7 +120,7 @@ body{
 
 
 #container{
-  margin: 344px auto 0px auto;
+  margin: 355px auto 0px auto;
   display: inline-block;
   border-left: 2px solid black;
   border-right: 2px solid black;
@@ -130,7 +131,7 @@ body{
 }
 
 #container.down{
-  margin: 101px auto 0px auto;
+  margin: 114px auto 0px auto;
 }
 
 
