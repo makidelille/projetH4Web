@@ -1,0 +1,33 @@
+article figure{
+  background: white;
+  padding : 10px;
+  border-radius: 15px;
+}
+
+article figure img{
+  max-height: 100%;
+  max-width: 100%;
+  display: inline-block;
+}
+
+.comment{
+  display: inline-block;
+  border : 1px solid red;
+  margin: 5px auto;
+  padding : 0;
+  background: #e2e2e2;
+  color : #313131;
+  width : 60%;
+}
+
+.comment figure{
+  border : 1px solid green;
+  padding  : 5px;
+  display: inline-block;
+
+}
+
+.comment p {
+  display: inline-block;
+  border : 1px solid blue;
+}
