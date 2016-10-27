@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Ajouter</title>
+    <link rel="stylesheet" href="css/add.css">
+    <script type="text/javascript">
+
+    </script>
   </head>
   <body>
     <form action="add">
-      <label for="photo">Fichier</label>
-      <input type="file" name="photo">
-      <label for="name">Nom</label>
-      <input type="text" name="name" id="">
-      <label for="desc">Description</label>
-      <textarea name="desc" rows="8" cols="40"></textarea>
+      <div>
+        <label for="photo">Fichier</label>
+        <input type="file" id="selectedFile" style="display: none;" />
+        <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
+        <img id="blah" src="" alt="your image" />
+      </div>
+      <div>
+        <label for="name">Nom</label>
+        <input type="text" name="name" id="">
+      </div>
+      <div>
+        <label for="desc">Description</label>
+        <textarea name="desc" rows="8" cols="40"></textarea>
+      </div>
     </form>
 
   </body>
