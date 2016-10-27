@@ -4,17 +4,13 @@
     <meta charset="utf-8">
     <title>Ajouter</title>
     <link rel="stylesheet" href="css/add.css">
-    <script type="text/javascript">
-
-    </script>
   </head>
   <body>
     <form action="add">
       <div>
         <label for="photo">Fichier</label>
-        <input type="file" id="selectedFile" style="display: none;" />
-        <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
-        <img id="blah" src="" alt="your image" />
+        <input type="file" id="selectedFile" style="display: none;" onchange="test(this);"/>
+        <img id="imgUpload" src="http://placehold.it/50x50" onclick="document.getElementById('selectedFile').click();" />
       </div>
       <div>
         <label for="name">Nom</label>
@@ -25,6 +21,22 @@
         <textarea name="desc" rows="8" cols="40"></textarea>
       </div>
     </form>
-
   </body>
+  <script type="text/javascript">
+    var test = function (evt) {
+        alert("new image");
+          var tgt = evt.target || window.event.srcElement,
+              files = tgt.files;
+
+          // FileReader support
+          if (FileReader && files && files.length) {
+
+              var fr = new FileReader();
+              fr.onload = function () {
+                  document.getElementById("imgUpload").src = fr.result;
+              }
+              fr.readAsDataURL(files[0]);
+          }
+    }
+  </script>
 </html>

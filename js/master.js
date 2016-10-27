@@ -57,13 +57,14 @@ function selectInNav(){
 
 function loadPage(pageUrl){
   console.log(pageUrl);
+   document.querySelectorAll("link:not([href=\"css/master.css\"]), script:not([src=\"js/master.js\"])").forEach(function(ele){
+              ele.remove();
+  });
   var update = new XMLHttpRequest();
    update.open("GET", pageUrl, true);
    update.onreadystatechange = function () {
        if(update.readyState === 4 && (update.status === 200 || update.status == 0)){
-            document.querySelectorAll("link:not([href=\"css/master.css\"]), script:not([src=\"js/master.js\"])").forEach(function(ele){
-              ele.remove();
-            });
+           
             document.getElementById("container").innerHTML = update.responseText;
         }
 

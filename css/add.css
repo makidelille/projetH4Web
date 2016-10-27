@@ -22,3 +22,7 @@
   display: block;
   margin: auto;
 }
+
+#container #imgUpload{
+  cursor: pointer;
+}
