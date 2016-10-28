@@ -1,28 +1,52 @@
 #container form{
-  border : 1px solid red;
   display: inline-block;
   margin : 10px auto;
 }
 
 #container div{
-  border : 1px solid green;
   display: block;
-  margin: 10px auto;
-}
-#container label{
-  border: 1px solid black;
-  display: block;
-  margin: auto;
+  margin: 0px auto;
+  padding : 5px;
   font-weight: bold;
   background: linear-gradient(to right,rgba(0,0,0,0),rgba(226, 226, 226, 0.95),rgba(0,0,0,0));
 }
 
-#container input, #container textarea{
-  border : 1px solid blue;
+#container input:not([type="submit"]), #container textarea{
   display: block;
   margin: auto;
+  width : 100%;
+  border: none;
+  background: none;
+  text-align: center;
+}
+
+#container textarea{
+  resize: horizontal;
+}
+
+#container input:focus, #container textarea:focus{
+  border : 1px inset;
+  outline: none;
+  box-shadow: 0 0 5px black;
+  background: rgb(68, 63, 67);
 }
 
 #container #imgUpload{
   cursor: pointer;
+  max-height: 80vh;
+  max-width: 100%;
+  border : 2px solid white;
+  background: white;
+  padding : 5px;
+  border-radius: 15px;
+}
+
+#container input[name="titre"]{
+  font-weight: bold;
+  font-size: 1.4em;
+
+}
+
+#container textarea[name="desc"]{
+  text-align: center;
 }

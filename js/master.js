@@ -57,14 +57,19 @@ function selectInNav(){
 
 function loadPage(pageUrl){
   console.log(pageUrl);
-   document.querySelectorAll("link:not([href=\"css/master.css\"]), script:not([src=\"js/master.js\"])").forEach(function(ele){
+   document.querySelectorAll("link:not([href=\"css/master.css\"])").forEach(function(ele){
               ele.remove();
   });
   var update = new XMLHttpRequest();
    update.open("GET", pageUrl, true);
    update.onreadystatechange = function () {
        if(update.readyState === 4 && (update.status === 200 || update.status == 0)){
-           
+            document.querySelectorAll("link:not([href=\"css/master.css\"])").forEach(function(ele){
+                    ele.remove();
+            });
+            var html  = document.createElement('html');
+            html.innerHTML = update.responseText;
+            document.title = html.querySelector('title') != null ? html.querySelector('title').innerText : "";
             document.getElementById("container").innerHTML = update.responseText;
         }
 
@@ -79,4 +84,19 @@ function aOnClick(event){
   event.preventDefault();
   loadPage(this.href);
   return false;
+}
+
+function  imgLoad(evt) {
+      var tgt = evt.target || window.event.srcElement,
+          files = tgt.files;
+
+      // FileReader support
+      if (FileReader && files && files.length) {
+
+          var fr = new FileReader();
+          fr.onload = function () {
+              document.getElementById("imgUpload").src = fr.result;
+          }
+          fr.readAsDataURL(files[0]);
+      }
 }

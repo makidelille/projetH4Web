@@ -8,35 +8,18 @@
   <body>
     <form action="add">
       <div>
-        <label for="photo">Fichier</label>
-        <input type="file" id="selectedFile" style="display: none;" onchange="test(this);"/>
-        <img id="imgUpload" src="http://placehold.it/50x50" onclick="document.getElementById('selectedFile').click();" />
+        <input type="text" name="titre" id="" placeholder="Titre">
       </div>
       <div>
-        <label for="name">Nom</label>
-        <input type="text" name="name" id="">
+        <input type="file" id="selectedFile" style="display: none;" onchange="imgLoad(this);"/>
+        <img id="imgUpload" src="http://placehold.it/500x500" onclick="document.getElementById('selectedFile').click();" />
       </div>
       <div>
-        <label for="desc">Description</label>
-        <textarea name="desc" rows="8" cols="40"></textarea>
+        <textarea name="desc" rows="8" cols="40" placeholder="description"></textarea>
+      </div>
+      <div>
+        <input type="submit" name="name" value="Envoyer">
       </div>
     </form>
   </body>
-  <script type="text/javascript">
-    var test = function (evt) {
-        alert("new image");
-          var tgt = evt.target || window.event.srcElement,
-              files = tgt.files;
-
-          // FileReader support
-          if (FileReader && files && files.length) {
-
-              var fr = new FileReader();
-              fr.onload = function () {
-                  document.getElementById("imgUpload").src = fr.result;
-              }
-              fr.readAsDataURL(files[0]);
-          }
-    }
-  </script>
 </html>
