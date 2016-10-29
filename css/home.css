@@ -1,5 +1,5 @@
 section{
-  margin: 0px auto;
+  margin: 5px auto;
   padding :5px;
   display: block;
   position: relative;
@@ -7,23 +7,11 @@ section{
 
 
 section header{
-  background :linear-gradient(to right,rgba(0,0,0,0),#129ef7,rgba(0,0,0,0));
+  background :-webkit-radial-gradient(#129ef7,rgba(0,0,0,0)); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#129ef7,rgba(0,0,0,0)); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#129ef7,rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#129ef7,rgba(0,0,0,0)); /* Standard syntax */
 }
-
-section header h1{
-  margin: 0px auto;
-}
-
-section header nav{
-  margin : 0px auto;
-  padding: 5px;
-}
-
-
-
-
-
-
 
 article {
   display: inline-block;
@@ -57,7 +45,7 @@ article a{
 }
 
 article figure:hover{
-  transform: scale(1.5,1.5) rotate(360deg);
+  transform: scale(1.5,1.5);
   animation: hoverFigure 5s infinite;
   animation-delay: 2s;
 }
@@ -66,11 +54,4 @@ article figure:hover{
   0%,100%,40%,60% { transform: scale(1.5,1.5) rotate(0deg);}
   45% {transform: scale(1.6,1.6) rotate(30deg);}
   55% {transform: scale(1.6,1.6) rotate(-30deg);}
-}
-
-@keyframes hoverAside {
-  0% {transform: rotate(0deg);}
-  25% {transform: rotate(15deg);}
-  80% {transform: rotate(5deg);}
-  100% {transform: rotate(0deg);}
 }

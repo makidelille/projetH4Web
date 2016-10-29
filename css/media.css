@@ -3,6 +3,10 @@ article figure{
   padding : 10px;
   border-radius: 15px;
 }
+article figcaption{
+    margin: 5px auto;
+    text-align: justify;
+  }
 
 #mainImg img{
   max-height: 80vh;
@@ -10,9 +14,14 @@ article figure{
   display: inline-block;
 }
 
+#control{
+  display: block;
+  padding : 5px;
+  border: 1px solid red;
+}
+
 
 #addComment{
-  border : 1px solid red;
   display: inline-block;
   width : 70%;
   background: rgba(226,226,226,.2);
@@ -105,12 +114,7 @@ article figure{
   float: left;
   height: 100%;
   max-width: 15%;
-  background: #aaa;
   text-align: center;
-
-}
-
-.comment figcaption {
 
 }
 

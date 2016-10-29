@@ -6,19 +6,20 @@
     <link rel="stylesheet" href="css/add.css">
   </head>
   <body>
-    <form action="add">
+    <form action="add" method="post">
       <div>
-        <input type="text" name="titre" id="" placeholder="Titre">
+        <input type="text" name="titre" placeholder="Titre">
+      </div >
+      <div id="imgUpload" onclick="document.getElementById('selectedFile').click();" >
+        <input name="image" type="file" id="selectedFile" style="display: none;" onchange="imgLoad(this, 'img');"/>
+        <img id="img" src="http://placehold.it/500x500" />
       </div>
       <div>
-        <input type="file" id="selectedFile" style="display: none;" onchange="imgLoad(this);"/>
-        <img id="imgUpload" src="http://placehold.it/500x500" onclick="document.getElementById('selectedFile').click();" />
-      </div>
-      <div>
-        <textarea name="desc" rows="8" cols="40" placeholder="description"></textarea>
+        <textarea name="desc" rows="2" cols="40" placeholder="description" onkeyup="textAreaAdjust(this)"></textarea>
       </div>
       <div>
         <input type="submit" name="name" value="Envoyer">
+
       </div>
     </form>
   </body>

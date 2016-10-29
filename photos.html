@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Index</title>
-    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/photos.css">
   </head>
   <body>
     <section id="listPhotos">
@@ -12,13 +12,13 @@
           <nav>
             <label for="filter">Trier par : </label>
             <select class="" name="filter">
-                <option value="option1">option1</option>
-                <option value="option2">option2</option>
-                <option value="option3">option3</option>
-                <option value="option4">option4</option>
+                <option value="most_recent">+ à - Récentes</option>
+                <option value="most_commenter">+ à - Commentées</option>
+                <option value="less_recent">- à + Récentes</option>
+                <option value="less_commenter">- à + Commentées</option>
             </select>
             <label for="recherche"> Chercher : </label>
-            <input type="search" name="" id="recherche">
+            <input type="search" name="" id="recherche" placeholder="Titre">
             <button type="button" name="button">Go</button>
           </nav>
         </header>

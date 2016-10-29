@@ -1,5 +1,5 @@
 section{
-  margin: 5px auto;
+  margin: 0px auto;
   padding :5px;
   display: block;
   position: relative;
@@ -7,11 +7,23 @@ section{
 
 
 section header{
-  background :-webkit-radial-gradient(#129ef7,rgba(0,0,0,0)); /* Safari 5.1 to 6.0 */
-  background: -o-radial-gradient(#129ef7,rgba(0,0,0,0)); /* For Opera 11.6 to 12.0 */
-  background: -moz-radial-gradient(#129ef7,rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(#129ef7,rgba(0,0,0,0)); /* Standard syntax */
+  background :linear-gradient(to right,rgba(0,0,0,0),#129ef7,rgba(0,0,0,0));
 }
+
+section header h1{
+  margin: 0px auto;
+}
+
+section header nav{
+  margin : 0px auto;
+  padding: 5px;
+}
+
+
+
+
+
+
 
 article {
   display: inline-block;
@@ -45,39 +57,9 @@ article a{
 }
 
 article figure:hover{
-  transform: scale(1.5,1.5) rotate(360deg);
+  transform: scale(1.5,1.5);
   animation: hoverFigure 5s infinite;
   animation-delay: 2s;
-}
-
-section aside{
-    font-weight: bold;
-  display: inline-block;
-  position: absolute;
-  bottom: 0;
-  right : 0;
-  border-radius: 5px;
-  border : 2px outset;
-  background: radial-gradient(#e2e2e2, #aaaaaa);
-  z-index: 2;
-}
-
-section aside:hover{
-  border : 2px inset;
-  background : radial-gradient(#aaaaaa, #aaaaaa);
-  animation : 2s hoverAside;
-  animation-delay: 2s;
-
-}
-
-section aside a {
-  display: inline-block;
-  margin: 0;
-  padding: 10px 20px;
-}
-
-section aside a::before{
-    content: "More...";
 }
 
 @keyframes hoverFigure {

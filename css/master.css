@@ -2,7 +2,7 @@ body{
   margin : 0 auto;
   padding : 5px;
   width : 95vw;
-  min-height: 150vh;
+  min-height: 100vh;
   text-align: center;
   z-index: 0;
   font-family: serif,"open sans", sans-serif;
