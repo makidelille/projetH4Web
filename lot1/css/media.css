@@ -31,14 +31,18 @@ article figcaption{
 
 .addComment textarea{
   width: 90%;
-  display: inline-block;
+  display: block;
   margin : 5px auto;
   resize: none;
 }
 
 .addComment input{
-  display: block;
+  display: inline-block;
   margin: 5px auto;
+}
+
+.addComment input[type="submit"]{
+  display: block;
 }
 
 .comments{

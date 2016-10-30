@@ -34,18 +34,22 @@
                       <figcaption>23/06/2016</figcaption>
                     </figure>
                   </a>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <p style="color:#F00">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                   <aside>
-                    <button type="button" name="button" onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                    <button type="button" >Supprimer</button>
+                    <button type="button"  >Modifier</button>
+                    <button type="button"  onclick="showElement(document.querySelector('form.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
                   </aside>
                 </section>
 
-                <section  class="addComment hidden comment1">
-                  <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                <form class="addComment hidden comment1"method="post">
                   <h3>Poster un commentaire</h3>
+                  <input class="hidden"  type="number" name="answer" value="1"/>
                   <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
-                  <input type="button" name="name" value="poster">
-                </section>
+                  <label for="color">Couleur du commentaire :</label>
+                  <input type="color" name="color" value="#000"/>
+                  <input type="submit"  value="Poster">
+                </form>
 
                 <section class="comment answer" id="comment2">
                     <a href="profil.html">
@@ -55,18 +59,22 @@
                         <figcaption>23/06/2016</figcaption>
                       </figure>
                     </a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <p style="color:#000">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                       <aside>
-                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                        <button type="button" >Supprimer</button>
+                        <button type="button"  >Modifier</button>
+                        <button type="button"  onclick="showElement(document.querySelector('form.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
                       </aside>
                 </section>
 
-                  <section  class="addComment hidden comment2">
-                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
-                    <h3>Poster un commentaire</h3>
-                    <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
-                    <input type="button" name="name" value="poster">
-                  </section>
+                <form class="addComment hidden comment2"method="post">
+                  <h3>Poster un commentaire</h3>
+                  <input class="hidden"  type="number" name="answer" value="2"/>
+                  <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+                  <label for="color">Couleur du commentaire :</label>
+                  <input type="color" name="color" value="#000"/>
+                  <input type="submit"  value="Poster">
+                </form>
 
                   <section class="comment answer" id="comment3">
                     <a href="profil.html">
@@ -76,18 +84,22 @@
                         <figcaption>23/06/2016</figcaption>
                       </figure>
                     </a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <p style="color:#e2e">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                       <aside>
-                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                        <button type="button" >Supprimer</button>
+                        <button type="button" >Modifier</button>
+                        <button type="button"  onclick="showElement(document.querySelector('form.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
                       </aside>
                   </section>
 
-                  <section  class="addComment hidden comment3">
-                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                  <form class="addComment hidden comment3"method="post">
                     <h3>Poster un commentaire</h3>
+                    <input class="hidden" type="number" name="answer" value="3"/>
                     <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
-                    <input type="button" name="name" value="poster">
-                  </section>
+                    <label for="color">Couleur du commentaire :</label>
+                    <input type="color" name="color" value="#000"/>
+                    <input type="submit"  value="Poster">
+                  </form>
 
                   <section class="comment answer" id="comment4">
                     <a href="profil.html">
@@ -97,18 +109,22 @@
                         <figcaption>23/06/2016</figcaption>
                       </figure>
                     </a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <p style="color:#008800">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                       <aside>
-                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                        <button type="button" >Supprimer</button>
+                        <button type="button" >Modifier</button>
+                        <button type="button"  onclick="showElement(document.querySelector('form.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
                       </aside>
                   </section>
 
-                  <section  class="addComment hidden comment4">
-                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                  <form class="addComment hidden comment4"method="post">
                     <h3>Poster un commentaire</h3>
+                    <input class="hidden" type="number" name="answer" value="4"/>
                     <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
-                    <input type="button" name="name" value="poster">
-                  </section>
+                    <label for="color">Couleur du commentaire :</label>
+                    <input type="color" name="color" value="#000"/>
+                    <input type="submit"  value="Poster">
+                  </form>
 
                 <section class="comment" id="comment5">
                   <a href="profil.html">
@@ -118,18 +134,22 @@
                       <figcaption>23/06/2016</figcaption>
                     </figure>
                   </a>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <p style="color:#220088">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                       <aside>
-                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                        <button type="button"  >Supprimer</button>
+                        <button type="button"  >Modifier</button>
+                        <button type="button"  onclick="showElement(document.querySelector('form.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
                       </aside>
                   </section>
 
-                  <section  class="addComment hidden comment5">
-                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                  <form class="addComment hidden comment5"method="post">
                     <h3>Poster un commentaire</h3>
+                    <input class="hidden" type="number" name="answer" value="5"/>
                     <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
-                    <input type="button" name="name" value="poster">
-                  </section>
+                    <label for="color">Couleur du commentaire :</label>
+                    <input type="color" name="color" value="#000"/>
+                    <input type="submit"  value="Poster">
+                  </form>
 
                   <section class="comment" id="comment6">
                     <a href="profil.html">
@@ -139,24 +159,34 @@
                         <figcaption>23/06/2016</figcaption>
                       </figure>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p style="color:#00F">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <aside>
-                      <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                      <button type="button" >Supprimer</button>
+                      <button type="button" >Modifier</button>
+                      <button type="button"  onclick="showElement(document.querySelector('form.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
                     </aside>
                   </section>
 
-                    <section  class="addComment hidden comment6">
-                      <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                    <form class="addComment hidden comment6"method="post">
                       <h3>Poster un commentaire</h3>
+                      <input class="hidden" type="number" name="answer" value="6"/>
                       <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
-                      <input type="button" name="name" value="poster">
-                    </section>
+                      <label for="color">Couleur du commentaire :</label>
+                      <input type="color" name="color" value="#000"/>
+                      <input type="submit"  value="Poster">
+                    </form>
             </div>
-            <section  class="addComment">
+
+
+            <form  class="addComment" method="post">
               <h3>Poster un commentaire</h3>
+              <input class="hidden" type="number" name="answer" value="-1"/>
               <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
-              <input type="button" name="name" value="poster">
-            </section>
+              <label for="color">Couleur du commentaire :</label>
+              <input type="color" name="color" value="#000"/>
+              <input type="submit"  value="Poster">
+
+            </form>
 
 
 
