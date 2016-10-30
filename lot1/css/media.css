@@ -1,0 +1,94 @@
+article figure{
+  background: white;
+  padding : 10px;
+  border-radius: 15px;
+}
+article figcaption{
+    margin: 5px auto;
+    text-align: justify;
+  }
+
+#mainImg img{
+  max-height: 80vh;
+  max-width: 100%;
+  display: inline-block;
+}
+
+#control{
+  display: block;
+  padding : 5px;
+  border: 1px solid red;
+}
+
+
+.addComment{
+  display: inline-block;
+  width : 70%;
+  background: rgba(226,226,226,.2);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.addComment textarea{
+  width: 90%;
+  display: inline-block;
+  margin : 5px auto;
+  resize: none;
+}
+
+.addComment input{
+  display: block;
+  margin: 5px auto;
+}
+
+.comments{
+  display: inline-block;
+  padding : 0;
+  background: rgba(226,226,226,.2);
+  color : #313131;
+  width : 70%;
+  border-radius: 10px;
+  text-align: right;
+}
+
+.comment{
+  border : 1px solid black;
+  background: #e2e2e2;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 5px auto;
+  text-align: justify;
+}
+
+.comment .btn{
+  color : #313131;
+
+}
+
+
+.comment figure{
+  padding  : 5px;
+  display: block;
+  margin : 5px 10px;
+  float: left;
+  height: 100%;
+  text-align: center;
+
+}
+
+.comment p {
+  display: block;
+  margin : 5px 10px 5px auto;
+  max-width: 80%;
+}
+
+.comments .answer{
+  width : 70%;
+  margin: 5px 10px 5px auto;
+}
+
+.comment aside{
+  display: block;
+  margin: 0px 5px 5px auto;
+  text-align: right;
+}
