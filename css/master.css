@@ -32,7 +32,7 @@ body{
 
 #mainHeader img{
   display: inline-block;
-  margin : 10px 100px;
+  margin : 10px 0;
   transition: 2s width, 2s height, 2s margin;
 
 }
@@ -135,15 +135,6 @@ body{
 
 
 
-footer{
-  display: block;
-  background: #313131;
-  padding :5px;
-  margin : 0px;
-  display: block;
-  color : #e2e2e2;
-}
-
-footer a{
-    color : #e2e2e2;
+.hidden{
+  display: none !important;
 }

@@ -21,7 +21,7 @@
 }
 
 #container textarea{
-  resize: vertical;
+  resize: none;
 }
 
 #container input:focus, #container textarea:focus{

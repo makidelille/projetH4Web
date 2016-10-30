@@ -1,10 +1,10 @@
 # projetH4Web
 projet dans le cadre du dev Web h4 iti
 
-photo & video
+photo
 
-  ajouter "media" (photo/video)
-  commenter "media"
+  ajouter "photos"
+  commenter "photo"
   se connecter
 
 couleur :

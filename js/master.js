@@ -1,9 +1,11 @@
-
+String.prototype.contains = function (s) {
+  return this.indexOf(s) != -1;
+};
 
 var site = "home";
 
 window.onscroll = function(){
-      if(document.body.scrollTop > 1){
+      if(document.body.scrollTop > 1 || document.documentElement.scrollTop > 1){
         document.getElementById('mainHeader').className="min";
         document.getElementById("container").className="down";
       }else{
@@ -31,9 +33,9 @@ window.onload = function(){
 
 function scrollToPos(posY){
   var speed = 50;
-  var nextDif = document.body.scrollTop - speed-posY;
+  var nextDif = (document.documentElement.scrollTop | document.body.scrollTop) - speed-posY;
   if(nextDif > 0){
-      window.scrollTo(0, document.body.scrollTop - nextDif/speed);
+      window.scrollTo(0, (document.documentElement.scrollTop | document.body.scrollTop) - nextDif/speed);
       setTimeout(function(){
         scrollToPos(posY);
       }, 10);
@@ -57,14 +59,11 @@ function selectInNav(){
 
 function loadPage(pageUrl){
   console.log(pageUrl);
-   document.querySelectorAll("link:not([href=\"css/master.css\"])").forEach(function(ele){
-              ele.remove();
-  });
   var update = new XMLHttpRequest();
    update.open("GET", pageUrl, true);
    update.onreadystatechange = function () {
        if(update.readyState === 4 && (update.status === 200 || update.status == 0)){
-            document.querySelectorAll("link:not([href=\"css/master.css\"])").forEach(function(ele){
+            Array.prototype.forEach.call(document.querySelectorAll("link:not([href=\"css/master.css\"]):not([href=\"css/mobile.css\"])"), function(ele){
                     ele.remove();
             });
             var html  = document.createElement('html');
@@ -73,7 +72,7 @@ function loadPage(pageUrl){
             document.getElementById("container").innerHTML = update.responseText;
         }
 
-        document.querySelectorAll('#container a').forEach(function(a){
+        Array.prototype.forEach.call(document.querySelectorAll('#container a'),function(a){
           a.onclick = aOnClick;
         });
         setCookie("last",site,7);
@@ -151,6 +150,8 @@ function editProfil(){
   document.querySelector('button[name="Edit"]').innerText = "Save";
   document.querySelector('button[name="Edit"]').name = "Save";
 
+  textAreaAdjust(document.querySelector("#infos textarea"));
+
   document.querySelectorAll('#medias a').forEach(function(a){
     a.onclick = function(event){
       if(confirm("do you want to delete ?")){
@@ -161,7 +162,13 @@ function editProfil(){
       return false;
     }
   });
-  document.querySelector('#infos figure').onclick = function(){document.getElementById('profilPicInput').click()};
+
+  document.querySelector('#infos figure').onclick = function(){
+    document.getElementById('profilPicInput').click()
+  };
+
+  textAreaAdjust(document.querySelector('#infos textarea'));
+
 }
 
 function saveProfil(){
@@ -206,4 +213,17 @@ function toggleLogin(){
 
 
    return false;
+ }
+
+
+ function showElement(ele){
+   if(ele.className.contains("hidden")){
+     ele.className = ele.className.replace("hidden", "");
+   }
+ }
+
+ function hideElement(ele){
+   if(!ele.className.contains("hidden")){
+     ele.className = ele.className + " hidden";
+   }
  }

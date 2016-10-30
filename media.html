@@ -24,18 +24,9 @@
 
 
 
-        <section id="addComment">
-          <h3>Poster un commentaire</h3>
-          <textarea name="commentBox" rows="8" cols="40" placeholder="Your comment here"></textarea>
-          <input type="button" name="name" value="poster">
-          <div id="msgBox">
-            <p>En cours...</p>
-            <img src="img/load-icon.png" id="loadImg"/>
-          </div>
-        </section>
         <section>
             <div  class="comments">
-              <section class="comment">
+              <section class="comment" id="comment1">
                 <a href="profil.html">
                   <figure>
                       <img src="http://placehold.it/50x50" alt="">
@@ -44,8 +35,19 @@
                     </figure>
                   </a>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <aside>
+                    <button type="button" name="button" onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                  </aside>
                 </section>
-                <section class="comment answer">
+
+                <section  class="addComment hidden comment1">
+                  <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                  <h3>Poster un commentaire</h3>
+                  <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+                  <input type="button" name="name" value="poster">
+                </section>
+
+                <section class="comment answer" id="comment2">
                     <a href="profil.html">
                       <figure>
                         <img src="http://placehold.it/50x50" alt="">
@@ -54,8 +56,19 @@
                       </figure>
                     </a>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <aside>
+                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                      </aside>
+                </section>
+
+                  <section  class="addComment hidden comment2">
+                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                    <h3>Poster un commentaire</h3>
+                    <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+                    <input type="button" name="name" value="poster">
                   </section>
-                  <section class="comment answer">
+
+                  <section class="comment answer" id="comment3">
                     <a href="profil.html">
                       <figure>
                         <img src="http://placehold.it/50x50" alt="">
@@ -64,8 +77,19 @@
                       </figure>
                     </a>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <aside>
+                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                      </aside>
                   </section>
-                  <section class="comment answer">
+
+                  <section  class="addComment hidden comment3">
+                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                    <h3>Poster un commentaire</h3>
+                    <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+                    <input type="button" name="name" value="poster">
+                  </section>
+
+                  <section class="comment answer" id="comment4">
                     <a href="profil.html">
                       <figure>
                         <img src="http://placehold.it/50x50" alt="">
@@ -74,8 +98,19 @@
                       </figure>
                     </a>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <aside>
+                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                      </aside>
                   </section>
-                <section class="comment">
+
+                  <section  class="addComment hidden comment4">
+                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                    <h3>Poster un commentaire</h3>
+                    <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+                    <input type="button" name="name" value="poster">
+                  </section>
+
+                <section class="comment" id="comment5">
                   <a href="profil.html">
                     <figure>
                       <img src="http://placehold.it/50x50" alt="">
@@ -84,8 +119,19 @@
                     </figure>
                   </a>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <aside>
+                        <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                      </aside>
                   </section>
-                  <section class="comment">
+
+                  <section  class="addComment hidden comment5">
+                    <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                    <h3>Poster un commentaire</h3>
+                    <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+                    <input type="button" name="name" value="poster">
+                  </section>
+
+                  <section class="comment" id="comment6">
                     <a href="profil.html">
                       <figure>
                         <img src="http://placehold.it/50x50" alt="">
@@ -93,9 +139,24 @@
                         <figcaption>23/06/2016</figcaption>
                       </figure>
                     </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <aside>
+                      <button type="button" name="button"  onclick="showElement(document.querySelector('section.addComment.'+this.parentElement.parentElement.id))">Repondre</button>
+                    </aside>
+                  </section>
+
+                    <section  class="addComment hidden comment6">
+                      <span><button type="button" name="button" onclick="hideElement(this.parentElement.parentElement)">X</button></span>
+                      <h3>Poster un commentaire</h3>
+                      <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+                      <input type="button" name="name" value="poster">
                     </section>
             </div>
+            <section  class="addComment">
+              <h3>Poster un commentaire</h3>
+              <textarea name="commentBox" rows="1" cols="40" placeholder="Votre commentaire...." onkeypress="textAreaAdjust(this)"></textarea>
+              <input type="button" name="name" value="poster">
+            </section>
 
 
 
