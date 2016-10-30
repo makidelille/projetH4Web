@@ -20,6 +20,7 @@ CREATE TABLE `Commentaires` (
 	`photoId` INT NOT NULL,
 	`reponse` INT,
 	`commentaire` varchar(1024) NOT NULL,
+	`couleur` INT,
 	`date` DATE NOT NULL,
 	PRIMARY KEY (`id`)
 );
