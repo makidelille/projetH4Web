@@ -15,6 +15,7 @@ window.onscroll = function(){
   }
 
 window.onload = function(){
+    history.state = null;
     var lis = document.querySelectorAll('header nav li');
     for(var i=0; i< lis.length; i++){
       lis[i].onclick = function(event){
@@ -30,6 +31,11 @@ window.onload = function(){
     document.querySelector('header nav li.' + site).click();
     scrollToPos(1);
   };
+
+
+window.onpopstate = function(event){
+  console.log(event);
+}
 
 function scrollToPos(posY){
   var speed = 50;
@@ -70,12 +76,17 @@ function loadPage(pageUrl){
             html.innerHTML = update.responseText;
             document.title = html.querySelector('title') != null ? html.querySelector('title').innerText : "";
             document.getElementById("container").innerHTML = update.responseText;
-        }
 
-        Array.prototype.forEach.call(document.querySelectorAll('#container a'),function(a){
-          a.onclick = aOnClick;
-        });
-        setCookie("last",site,7);
+            var obj = {page:pageUrl};
+
+            history.pushState(obj, pageUrl, "?"+pageUrl);
+            console.log(history.state);
+
+            Array.prototype.forEach.call(document.querySelectorAll('#container a'),function(a){
+              a.onclick = aOnClick;
+            });
+            setCookie("last",site,7);
+        }
    }
   update.send();
 }
