@@ -11,6 +11,6 @@ sur ce site, on peut :
   * editer son profil (image, description)
   * supprimer une photo que l'on a poster
   
- !! a noter que le schéma de la bdd n'est pas exact, il manque 2 lignes :
+ _ NB : le schéma de la bdd n'est pas exact, il manque 2 lignes (présente dans le SQL) :_
   * une ligne photo/image pour stocker la photo dans la table photos
   * une ligne couleur dans les commentaires pour stocker la couleur du commentaire
