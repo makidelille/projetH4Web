@@ -14,29 +14,6 @@ window.onscroll = function(){
       }
   }
 
-window.onload = function(){
-    history.state = null;
-    var lis = document.querySelectorAll('header nav li');
-    for(var i=0; i< lis.length; i++){
-      lis[i].onclick = function(event){
-        site = this.className;
-        selectInNav();
-        loadPage(site + ".html");
-      }
-    }
-    if(getCookie("last") != ""){
-      site = getCookie("last");
-    }
-    console.log(site);
-    document.querySelector('header nav li.' + site).click();
-    scrollToPos(1);
-  };
-
-
-window.onpopstate = function(event){
-  console.log(event);
-}
-
 function scrollToPos(posY){
   var speed = 50;
   var nextDif = (document.documentElement.scrollTop | document.body.scrollTop) - speed-posY;
@@ -63,46 +40,10 @@ function selectInNav(){
   }
 }
 
-function loadPage(pageUrl){
-  console.log(pageUrl);
-  var update = new XMLHttpRequest();
-   update.open("GET", pageUrl, true);
-   update.onreadystatechange = function () {
-       if(update.readyState === 4 && (update.status === 200 || update.status == 0)){
-            Array.prototype.forEach.call(document.querySelectorAll("link:not([href=\"css/master.css\"]):not([href=\"css/mobile.css\"])"), function(ele){
-                    ele.remove();
-            });
-            var html  = document.createElement('html');
-            html.innerHTML = update.responseText;
-            document.title = html.querySelector('title') != null ? html.querySelector('title').innerText : "";
-            document.getElementById("container").innerHTML = update.responseText;
-
-            var obj = {page:pageUrl};
-
-            history.pushState(obj, pageUrl, "?"+pageUrl);
-            console.log(history.state);
-
-            Array.prototype.forEach.call(document.querySelectorAll('#container a'),function(a){
-              a.onclick = aOnClick;
-            });
-            setCookie("last",site,7);
-        }
-   }
-  update.send();
-}
-
-function aOnClick(event){
-  if(this.href.startsWith(window.location.origin)){
-    event.preventDefault();
-    loadPage(this.href);
-    return false;
-  }
-}
-
 function disconnect(){
   clearCookie();
-  //TODO window.location.reload();
-  window.location.href="/index.html" //TODO for demo
+  //window.location.reload();
+  window.location.href="home.html" //for demo
 }
 
 function  imgLoad(evt, target) {
@@ -190,7 +131,9 @@ function saveProfil(){
   document.querySelector('button[name="Save"]').name = "Edit";
 
   document.querySelectorAll('#medias a').forEach(function(a){
-    a.onclick = aOnClick;
+    a.onclick = function(){
+		window.location.href="media.html";
+	}
   });
 
   document.querySelector('#infos figure').onclick = function(){};
@@ -217,9 +160,9 @@ function toggleLogin(){
      //ajax to log
      //if answer true
      //we reload and setcookie
-     //TODO window.location.reload();
+     //window.location.reload();
      setCookie('last','profil');
-     window.location.href = "/index_alt.html"; //TODO temp for demo
+     window.location.href = "home_connecte.html"; 
    }
 
 

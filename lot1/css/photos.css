@@ -1,0 +1,76 @@
+section{
+  margin: 0px auto;
+  padding :5px;
+  display: block;
+  position: relative;
+}
+
+
+section header{
+  background :linear-gradient(to right,rgba(0,0,0,0),#129ef7,rgba(0,0,0,0));
+}
+
+section header h1{
+  margin: 0px auto;
+}
+
+section header nav{
+  margin : 0px auto;
+  padding: 5px;
+}
+
+
+
+
+
+
+
+article {
+  display: inline-block;
+  width : 90%;
+  position: relative;
+}
+
+article figure{
+  display: inline-block;
+  padding : 5px;
+  background: #e5e5e5;
+  border-radius: 5px;
+  transition: transform 0.5s;
+  z-index: +5;
+  margin: 0;
+}
+
+article figure img{
+  max-width: 150px;
+  max-height: 150px;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+article a{
+  color : #313131;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0;
+  margin: 16px 40px;
+}
+
+article figure:hover{
+  transform: scale(1.5,1.5);
+  animation: hoverFigure 5s infinite;
+  animation-delay: 2s;
+}
+
+@keyframes hoverFigure {
+  0%,100%,40%,60% { transform: scale(1.5,1.5) rotate(0deg);}
+  45% {transform: scale(1.6,1.6) rotate(30deg);}
+  55% {transform: scale(1.6,1.6) rotate(-30deg);}
+}
+
+@keyframes hoverAside {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(15deg);}
+  80% {transform: rotate(5deg);}
+  100% {transform: rotate(0deg);}
+}

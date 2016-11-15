@@ -1,56 +1,8 @@
 section{
   margin: 5px auto;
   padding :5px;
-  display: inline-block;
+  display: block;
   position: relative;
-}
-
-#infos{
-  width : 25%;
-  float : left;
-  margin-left: 5px;
-}
-
-
-#infos.editable figure{
-  cursor: pointer;
-}
-
-#infos.editable textarea, #infos div{
-  width : 100%;
-  display: inline-block;
-  text-align: justify;
-  border-radius: 5px;
-  margin : 5px auto;
-  padding: 10px;
-  background: #e2e2e2;
-  overflow: hidden;
-  resize: none;
-}
-
-#infos textarea, #infos.editable div{
-  display: none;
-}
-
-#medias{
-  width : 70%;
-}
-
-#medias.editable figure{
-  position: relative;
-}
-
-#medias.editable figure::before{
-  display: inline-block;
-  content: "Supprimer";
-  color : #e2e2e2;
-  background: rgba(0,0,0,0.6);
-  position: absolute;
-  top : 0;
-  bottom : 0;
-  left : 0;
-  right : 0;
-  border-radius: 5px;
 }
 
 
@@ -67,7 +19,7 @@ article {
   position: relative;
 }
 
-figure{
+article figure{
   display: inline-block;
   padding : 5px;
   background: #e5e5e5;
@@ -77,7 +29,7 @@ figure{
   margin: 0;
 }
 
-figure img{
+article figure img{
   max-width: 150px;
   max-height: 150px;
   min-height: 100px;
@@ -96,7 +48,6 @@ article figure:hover{
   transform: scale(1.5,1.5);
   animation: hoverFigure 5s infinite;
   animation-delay: 2s;
-  cursor: pointer;
 }
 
 @keyframes hoverFigure {
