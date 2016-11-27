@@ -63,8 +63,9 @@ function selectInNav(){
   }
 }
 
-function loadPage(pageUrl){
-  console.log(pageUrl);
+function loadPage(baseUrl){
+  console.log(baseUrl);
+  pageUrl = "pages/" + baseUrl;
   var update = new XMLHttpRequest();
    update.open("GET", pageUrl, true);
    update.onreadystatechange = function () {
@@ -79,7 +80,7 @@ function loadPage(pageUrl){
 
             var obj = {page:pageUrl};
 
-            history.pushState(obj, pageUrl, "?"+pageUrl);
+            history.pushState(obj, pageUrl, baseUrl);
             console.log(history.state);
 
             Array.prototype.forEach.call(document.querySelectorAll('#container a'),function(a){
