@@ -18,7 +18,7 @@ public class MainServlet extends AbstractServlet{
 		if(!"".equals(req.getAttribute(Ref.ATTR_AUTH))){
 			context.setVariable(Ref.VAR_NAME, req.getAttribute(Ref.ATTR_AUTH));
 		}
-		
+
 		return context;
 	}
 	
