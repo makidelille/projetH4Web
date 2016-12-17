@@ -5,10 +5,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
 
 import org.thymeleaf.context.WebContext;
 
+import photoNet.daos.PhotoDao;
 import photoNet.daos.ProfileDao;
+import photoNet.service.DataService;
+import photoNet.utils.Photo;
 import photoNet.utils.Profile;
 import photoNet.utils.Ref;
 
@@ -20,8 +24,8 @@ public class PagesServlets extends AbstractServlet{
 	private interface IContextBuilder{
 		WebContext build(WebContext old, HttpServletRequest req);
 		
-		public static final IContextBuilder DEFAULT = new IContextBuilder() {
-			
+		IContextBuilder DEFAULT = new IContextBuilder() {
+
 			@Override
 			public WebContext build(WebContext old, HttpServletRequest req) {
 				return old;
@@ -41,12 +45,21 @@ public class PagesServlets extends AbstractServlet{
 		mapping.put("deconnnection", IContextBuilder.DEFAULT);
 		mapping.put("add", IContextBuilder.DEFAULT);
 		mapping.put("profile", new IContextBuilder() {
-			
+
 			@Override
 			public WebContext build(WebContext old, HttpServletRequest req) {
 				String id = req.getParameter("name");
-				Profile p = !"".equals(id) ? ProfileDao.getInstance().getProfile(id) :Profile.NOT_FOUND;			
+				Profile p = DataService.getInstance().getProfile(id);
 				old.setVariable(Ref.VAR_PROFILE, p);
+				return old;
+			}
+		});
+		mapping.put("media", new IContextBuilder() {
+			@Override
+			public WebContext build(WebContext old, HttpServletRequest req) {
+				String photoId = req.getParameter("photo");
+				Photo p = DataService.getInstance().getPhoto(photoId);
+				old.setVariable(Ref.VAR_PHOTO, p);
 				return old;
 			}
 		});

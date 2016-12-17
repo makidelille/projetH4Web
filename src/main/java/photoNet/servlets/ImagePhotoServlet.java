@@ -1,33 +1,28 @@
 package photoNet.servlets;
 
+import org.thymeleaf.context.WebContext;
+import photoNet.service.DataService;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+public class ImagePhotoServlet extends AbstractServlet{
 
-import org.thymeleaf.context.WebContext;
-
-import photoNet.managers.PhotoManager;
-
-public class ImageServlet extends AbstractServlet{
-
-	public ImageServlet() {
+	public ImagePhotoServlet() {
 		super("img/photo");
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO profil pic too
-		int id= Integer.parseInt(request.getParameter("id"));
-		
-		
+		String id= request.getParameter("id");
 		try {
-			String path = PhotoManager.getInstance().getImagePath(id);
-			Path uri = Paths.get(this.getClass().getClassLoader().getResource("city-no-photo.png").toURI());
+			String path = DataService.getInstance().getPhoto(id).getPath();
+			Path uri = Paths.get(this.getClass().getClassLoader().getResource("no-photo.png").toURI());
 			if(path != null){
 				uri = Paths.get(path);
 			}
