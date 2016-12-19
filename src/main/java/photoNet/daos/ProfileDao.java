@@ -11,12 +11,14 @@ import photoNet.exceptions.ProfileNotFoundException;
 import photoNet.utils.Photo;
 import photoNet.utils.Profile;
 
+import javax.xml.crypto.Data;
+
 public class ProfileDao{
 
 		public Profile getProfile(String id) throws PhotoNetRuntimeException {
 			try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE name = ? ");
-				statement.setString(0, id);
+				statement.setString(1, id);
 				try (ResultSet result = statement.executeQuery()){
 					if(result.first()) return new Profile()
 							.setName(result.getString("name"))
@@ -33,7 +35,7 @@ public class ProfileDao{
 	public Profile getProfileWithPhotosId(String id) throws PhotoNetRuntimeException{
 		try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM users INNER JOIN photos ON users.name = photos.auteur   WHERE name = ? ");
-			statement.setString(0, id);
+			statement.setString(1, id);
 			try (ResultSet result = statement.executeQuery()){
 				if(result.first()){
 					Profile p =  new Profile().setName(result.getString("name"))
@@ -51,8 +53,17 @@ public class ProfileDao{
 		}catch(SQLException e){
 			throw new DaoRuntimeException("exception raised in the profileDao",e);
 		}
+	}
 
-
+	public boolean addNewPorfile(String name, String pass) throws PhotoNetRuntimeException{
+		try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO users(name,hashPass) VALUES (?,?)");
+			stmt.setString(1,name);
+			stmt.setString(2,pass);
+			return stmt.executeUpdate() > 0;
+		}catch (SQLException e){
+			throw new DaoRuntimeException("Exception raisend in the profileDao",e);
+		}
 	}
 	
 }

@@ -16,7 +16,7 @@ public class PhotoDao {
     public Photo getPhotoWithAuthor(String id) throws PhotoNetRuntimeException {
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM photos INNER JOIN users ON photos.auteur = users.name WHERE id = ? ");
-            statement.setString(0, id);
+            statement.setString(1, id);
             try (ResultSet result = statement.executeQuery()){
                 if(result.first()) return new Photo().setId(Integer.parseInt(id))
                         .setTitle(result.getString("photos.titre"))
@@ -26,7 +26,7 @@ public class PhotoDao {
                 else throw new PhotoNotFoundException("photo not found: " + id );
             }
         }catch(SQLException e){
-            throw new DaoRuntimeException("exception raised in the profileDao",e);
+            throw new DaoRuntimeException("exception raised in the photoDao",e);
         }
     }
 

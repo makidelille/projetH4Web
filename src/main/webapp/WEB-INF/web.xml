@@ -11,17 +11,36 @@
   	<servlet-name>PagesServlet</servlet-name>
   	<servlet-class>photoNet.servlets.PagesServlets</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>PostServlet</servlet-name>
+      <servlet-class>photoNet.servlets.PostServlet</servlet-class>
+  </servlet>
+
   
   
-  <servlet-mapping>
-    <servlet-name>MainServlet</servlet-name>
-    <url-pattern>/main</url-pattern>
-  </servlet-mapping>
+
   <servlet-mapping>
   	<servlet-name>PagesServlet</servlet-name>
   	<url-pattern>/pages/*</url-pattern>
   </servlet-mapping>
-  
-  
+  <servlet-mapping>
+    <servlet-name>PostServlet</servlet-name>
+    <url-pattern>/post/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MainServlet</servlet-name>
+    <url-pattern>/main</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>RedirectFilter</filter-name>
+    <filter-class>photoNet.filters.RedirectFilter</filter-class>
+  </filter>
+
+
+  <filter-mapping>
+    <filter-name>RedirectFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   
 </web-app>

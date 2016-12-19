@@ -9,10 +9,10 @@ import javax.sql.DataSource;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class DataSourceProvider {
-	private static DataSourceProvider _instance;
+	private static DataSourceProvider _instance = new DataSourceProvider();
 	
 	public static DataSourceProvider getInstance(){
-		return _instance = _instance == null ? new DataSourceProvider() : _instance;
+		return _instance;
 	}
 	
 	private MysqlDataSource dataSource;

@@ -16,8 +16,9 @@ public class Comment {
 		return id;
 	}
 
-	public void setId(int id) {
+	public Comment setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	public Photo getPhoto() {

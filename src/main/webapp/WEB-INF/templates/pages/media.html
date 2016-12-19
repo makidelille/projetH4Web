@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Index</title>
@@ -8,13 +8,13 @@
   <body>
         <section>
           <header>
-            <h1>Image Name</h1>
+            <h1 th:text="${photo.title}">Image Name</h1>
           </header>
           <article class="">
             <figure id="mainImg">
-              <img src="http://placehold.it/500x1500" alt="">
-              <figcaption>Description de l'image</figcaption>
-              <figcaption>par  : NAME</figcaption>
+              <img th:src="${'img/' + photo.id}" alt="">
+              <figcaption th:text="${photo.desc}">Description de l'image</figcaption>
+              <figcaption th:text="${'par' + photo.author.name}">par  : NAME</figcaption>
             </figure>
           </article>
         </section>

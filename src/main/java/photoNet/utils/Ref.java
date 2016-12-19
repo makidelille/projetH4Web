@@ -8,4 +8,5 @@ public class Ref {
 	public static final String VAR_PROFILE = "profil";
 
 	public static final String VAR_PHOTO = "photo";
+	public static final String VAR_COMMENTS = "comments";
 }

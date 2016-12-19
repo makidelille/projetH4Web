@@ -101,9 +101,9 @@ function aOnClick(event){
 }
 
 function disconnect(){
-  clearCookie();
-  //TODO window.location.reload();
-  window.location.href="/index.html" //TODO for demo
+    clearCookie();
+    window.location.reload();
+
 }
 
 function  imgLoad(evt, target) {
@@ -212,20 +212,42 @@ function toggleLogin(){
    }
  }
 
- function onLoginSubmit(){
-   document.getElementById('msgBox').parentElement.className ="on";
-   if(document.getElementById('login').className == "on"){
-     //ajax to log
-     //if answer true
-     //we reload and setcookie
-     //TODO window.location.reload();
-     setCookie('last','profil');
-     window.location.href = "/index_alt.html"; //TODO temp for demo
-   }
+
+function onSubmit(){
+    document.getElementById('msgBox').parentElement.className ="on";
+    if(document.getElementById('login').className == "on"){
+        var req = new XMLHttpRequest();
+        req.open("POST","post/login?name=" + document.getElementById("logname").value + "&mdp=" + document.getElementById("logpass").value,true);
+        req.contentType =  "application/x-www-form-urlencoded";
+        req.onload = function () {
+            if(this.response == "ok"){
+                window.location.reload();
+                setCookie('last','profil');
+            }else{
+                alert("nope");
+            }
+        };
+        req.send();
 
 
-   return false;
- }
+    }else{
+        //we register
+        var req = new XMLHttpRequest();
+        req.open("POST","post/register?name=" + document.getElementById("regname").value + "&mdp=" + document.getElementById("regmdp").value + "&mdp_confirm=" + document.getElementById("regmdp_confirm").value,true);
+        req.contentType =  "application/x-www-form-urlencoded";
+        req.onload = function () {
+            if(this.response == "ok"){
+                window.location.reload();
+                setCookie('last','profil');
+            }else{
+                alert("nope");
+            }
+        };
+        req.send();
+
+    }
+    return false;
+}
 
 
  function showElement(ele){

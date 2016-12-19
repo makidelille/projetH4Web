@@ -1,6 +1,7 @@
 package photoNet.servlets;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.thymeleaf.context.WebContext;
 import photoNet.daos.PhotoDao;
 import photoNet.daos.ProfileDao;
 import photoNet.service.DataService;
+import photoNet.utils.Comment;
 import photoNet.utils.Photo;
 import photoNet.utils.Profile;
 import photoNet.utils.Ref;
@@ -42,14 +44,14 @@ public class PagesServlets extends AbstractServlet{
 		mapping.put("home", IContextBuilder.DEFAULT);
 		mapping.put("about", IContextBuilder.DEFAULT);
 		mapping.put("connection",IContextBuilder.DEFAULT);
-		mapping.put("deconnnection", IContextBuilder.DEFAULT);
+		mapping.put("deconnection", IContextBuilder.DEFAULT);
 		mapping.put("add", IContextBuilder.DEFAULT);
-		mapping.put("profile", new IContextBuilder() {
+		mapping.put("profil", new IContextBuilder() {
 
 			@Override
 			public WebContext build(WebContext old, HttpServletRequest req) {
 				String id = req.getParameter("name");
-				Profile p = DataService.getInstance().getProfile(id);
+				Profile p = DataService.getInstance().getProfile(id, true);
 				old.setVariable(Ref.VAR_PROFILE, p);
 				return old;
 			}
@@ -60,6 +62,8 @@ public class PagesServlets extends AbstractServlet{
 				String photoId = req.getParameter("photo");
 				Photo p = DataService.getInstance().getPhoto(photoId);
 				old.setVariable(Ref.VAR_PHOTO, p);
+				List<Comment> comments = DataService.getInstance().getCommentsForPhoto(photoId);
+				old.setVariable(Ref.VAR_COMMENTS, comments);
 				return old;
 			}
 		});

@@ -4,56 +4,34 @@
     <meta charset="utf-8">
     <title>Index</title>
     <link rel="stylesheet" href="css/connection.css">
-    <script>
-      function toggleLogin(){
-        document.getElementById('msgBox').parentElement.className = "";
-        if(document.getElementById('login').className == "on"){
-          document.getElementById('login').className = "";
-          document.getElementById('register').className = "on";
-          document.getElementById('toggleBtn').innerText = "deja un compte ? (cliquez ici)";
-        }else{
-          document.getElementById('login').className = "on";
-          document.getElementById('register').className = "";
-          document.getElementById('toggleBtn').innerText = "pas de compte ? (cliquez ici)";
-        }
-      }
-
-      function onSubmit(){
-        document.getElementById('msgBox').parentElement.className ="on"
-
-        //TODO ajax here
-
-        return false;
-      }
-    </script>
   </head>
   <body>
       <section id="login" class="on">
-      <form action="profil.html" onsubmit="return onSubmit(this)">
+      <form method="post" action="/post/login" onsubmit="return onSubmit()">
         <div>
-          <label for="name">Nom  :</label>
-          <input type="text" id="name" placeholder="votre nom" required autofocus/>
+          <label for="logname">Nom  :</label>
+          <input type="text" id="logname" placeholder="votre nom" required autofocus/>
         </div>
         <div>
-          <label for="mdp">Mot de passe  :</label>
-          <input type="password" id="mdp" placeholder="votre mdp" required/>
+          <label for="logmdp">Mot de passe  :</label>
+          <input type="password" id="logmdp" placeholder="votre mdp" required/>
         </div>
         <input type="submit" name="logBtn" value="Login"/>
       </form>
       </section>
       <section id="register">
-      <form action="profil.html" onsubmit="return onSubmit(this)">
+      <form method="post"action="/post/register" onsubmit="return onSubmit()">
         <div>
-          <label for="name">Nom  :</label>
-          <input type="text" id="name" placeholder="votre nom" required/>
+          <label for="regname">Nom  :</label>
+          <input type="text" id="regname" placeholder="votre nom" required/>
         </div>
         <div>
-          <label for="mdp">Mot de passe  :</label>
-          <input type="password" id="mdp"  placeholder="votre mdp" required/>
+          <label for="regmdp">Mot de passe  :</label>
+          <input type="password" id="regmdp"  placeholder="votre mdp" required/>
         </div>
         <div>
-          <label for="mdp_confirm">confirmer mot de passe  :</label>
-          <input type="password" id="mdp_confirm"  placeholder="votre mdp" required/>
+          <label for="regmdp_confirm">confirmer mot de passe  :</label>
+          <input type="password" id="regmdp_confirm"  placeholder="votre mdp" required/>
         </div>
         <input type="submit" name="regBtn" value="Register"/>
       </form>
