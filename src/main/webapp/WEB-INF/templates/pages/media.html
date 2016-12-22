@@ -14,7 +14,7 @@
             <figure id="mainImg">
               <img th:src="${'image/photo?id=' + photo.id}" alt="">
               <figcaption th:text="${photo.desc}">Description de l'image</figcaption>
-              <figcaption th:text="${'par' + photo.author.name}">par  : NAME</figcaption>
+              <figcaption th:text="${'par : ' + photo.author.name}">par  : NAME</figcaption>
             </figure>
           </article>
         </section>
@@ -28,60 +28,30 @@
           </div>
         </section>
         <section>
-            <div  class="comments">
+            <div class="comments">
+            <div  th:each="comment : ${comments}">
               <section class="comment">
-                <a href="profil.html">
+                <a th:href="${'profil.html?id=' + comment.author}">
                   <figure>
-                      <img src="http://placehold.it/50x50" alt="">
-                      <figcaption>Name</figcaption>
-                      <figcaption>23/06/2016</figcaption>
+                      <img th:src="${'image/profil?id=' + comment.author}" alt="">
+                      <figcaption th:text="${comment.author}">Name</figcaption>
+                      <figcaption th:text="${comment.date}">23/06/2016</figcaption>
                     </figure>
                   </a>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <aside>
+                  <p th:text="${comment.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <aside th:if="${not #lists.isEmpty(comment.responses)}">
                   <div class="btn">Answers...</div>
                 </aside>
                 </section>
-                <section class="comment answer">
+                <section th:each="answer : ${comment.responses}" class="comment answer">
                       <figure>
-                        <img src="http://placehold.it/50x50" alt="">
-                        <figcaption>Name</figcaption>
-                        <figcaption>23/06/2016</figcaption>
+                        <img th:src="${'image/profil?id=' + answer.author}" alt="">
+                        <figcaption th:text="${answer.author}">Name</figcaption>
+                        <figcaption th:text="${answer.date}">23/06/2016</figcaption>
                       </figure>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <p th:text="${answer.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                   </section>
-                  <section class="comment answer">
-                      <figure>
-                        <img src="http://placehold.it/50x50" alt="">
-                        <figcaption>Name</figcaption>
-                        <figcaption>23/06/2016</figcaption>
-                      </figure>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  </section>
-                  <section class="comment answer">
-                      <figure>
-                        <img src="http://placehold.it/50x50" alt="">
-                        <figcaption>Name</figcaption>
-                        <figcaption>23/06/2016</figcaption>
-                      </figure>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  </section>
-                <section class="comment">
-                      <figure>
-                        <img src="http://placehold.it/50x50" alt="">
-                        <figcaption>Name</figcaption>
-                        <figcaption>23/06/2016</figcaption>
-                      </figure>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  </section>
-                  <section class="comment">
-                        <figure>
-                          <img src="http://placehold.it/50x50" alt="">
-                          <figcaption>Name</figcaption>
-                          <figcaption>23/06/2016</figcaption>
-                        </figure>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </section>
+            </div>
             </div>
 
 

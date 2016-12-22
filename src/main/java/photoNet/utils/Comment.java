@@ -1,6 +1,8 @@
 package photoNet.utils;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Comment {
 
@@ -8,7 +10,7 @@ public class Comment {
 	private Photo photo;
 	private String text;
 	private Profile author;
-	private Comment responseTo;
+	private List<Comment> responses = new ArrayList<>();
 	private Date date;
 	private String color;
 
@@ -48,12 +50,17 @@ public class Comment {
 		return this;
 	}
 
-	public Comment getResponseTo() {
-		return responseTo;
+	public List<Comment> getResponses() {
+		return responses;
 	}
 
-	public Comment setResponseTo(Comment responseTo) {
-		this.responseTo = responseTo;
+	public Comment setResponses(List<Comment> responseTo) {
+		this.responses = responseTo;
+		return this;
+	}
+
+	public Comment addResponse(Comment resp){
+		this.responses.add(resp);
 		return this;
 	}
 

@@ -1,15 +1,13 @@
 package photoNet.daos;
 
+import photoNet.exceptions.CantAddPhotoException;
 import photoNet.exceptions.DaoRuntimeException;
 import photoNet.exceptions.PhotoNetRuntimeException;
 import photoNet.exceptions.PhotoNotFoundException;
 import photoNet.utils.Photo;
 import photoNet.utils.Profile;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class PhotoDao {
 
@@ -31,4 +29,23 @@ public class PhotoDao {
     }
 
 
+    public int addPhoto(String name, String desc, String author, String imagePath) throws PhotoNetRuntimeException {
+        try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO photos(`auteur`,`titre`,`description`,`image`) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1,author);
+            statement.setString(2, name);
+            statement.setString(3,desc);
+            statement.setString(4,imagePath);
+            try(ResultSet result = statement.getGeneratedKeys()){
+                if(result.next()){
+                    return result.getInt(1);
+                }else{
+                    throw new CantAddPhotoException("photo could be added");
+                }
+            }
+        } catch (SQLException e) {
+           throw new DaoRuntimeException("excetpiton raised in the photoDao",e);
+        }
+
+    }
 }

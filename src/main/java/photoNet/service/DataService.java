@@ -8,8 +8,17 @@ import photoNet.exceptions.ProfileNotFoundException;
 import photoNet.utils.Comment;
 import photoNet.utils.Photo;
 import photoNet.utils.Profile;
+import photoNet.utils.Ref;
 
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Julien on 17/12/2016.
@@ -80,5 +89,21 @@ public class DataService {
             return false;
         }
 
+    }
+
+    public Photo addPhoto(Photo photo, Part figure) {
+        if(figure == null || photo == null) return null;
+        try{
+            InputStream is = figure.getInputStream();
+            String uuid = UUID.randomUUID().toString();
+            Path target = Paths.get(Ref.PHOTO_MAIN_DIR, uuid, figure.getSubmittedFileName().substring(figure.getSubmittedFileName().lastIndexOf('.')));
+            Files.copy(is, target);
+            photo.setPath(target.toString());
+            photo.setId(photoDao.addPhoto(photo.getTitle(),photo.getDesc(), photo.getAuthor().getName(), photo.getPath()));
+            return photo;
+        } catch (IOException | PhotoNetRuntimeException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

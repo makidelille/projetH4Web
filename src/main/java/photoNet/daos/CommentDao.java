@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,18 +24,25 @@ public class CommentDao {
     public List<Comment> getCommentsForPhoto(String photoId) throws PhotoNetRuntimeException{
         List<Comment> l = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM comments INNER JOIN users ON comments.auteur = users.name WHERE photoId = ? ");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM comments WHERE photoId = ? ORDER BY comments.id ASC");
             statement.setString(1, photoId);
             try (ResultSet result = statement.executeQuery()){
 
                 while(result.next()){
-                    l.add(new Comment()
+                    Comment c = new Comment()
                             .setId(result.getInt("comments.id"))
                             .setText(result.getString("comments.commentaire"))
                             .setDate(result.getDate("comments.date"))
                             .setColor(result.getString("comments.couleur"))
-                            .setAuthor(new Profile().setName("users.name").setProfilPicPath("users.imageProfil"))
-                    );
+                            .setAuthor(new Profile().setName("users.name"));
+                    int ans = result.getInt("comments.response");
+                    if(!result.wasNull()){
+                        //c'est une réponse
+                        for(Comment cm : l) if(cm.getId() == ans) cm.addResponse(c);
+                    }else {
+                        l.add(c);
+                    }
+
               }
             }
             return l;

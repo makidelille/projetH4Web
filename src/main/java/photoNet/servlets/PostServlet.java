@@ -1,18 +1,22 @@
 package photoNet.servlets;
 
 import photoNet.service.DataService;
+import photoNet.utils.Photo;
 import photoNet.utils.Profile;
 import photoNet.utils.Ref;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
 
 /**
  * Created by Julien on 18/12/2016.
  */
+@MultipartConfig
 public class PostServlet extends HttpServlet {
 
     @Override
@@ -56,6 +60,20 @@ public class PostServlet extends HttpServlet {
 
 
             case "add":
+                if(!"".equals(req.getSession().getAttribute(Ref.ATTR_AUTH))){
+                    String name = req.getParameter("name");
+                    String desc = req.getParameter("desc");
+                    String author = (String) req.getSession().getAttribute(Ref.ATTR_AUTH);
+                    Part figure = req.getPart("image");
+                    Photo photo = new Photo().setTitle(name).setAuthor(new Profile().setName(author)).setDesc(desc);
+                    photo = DataService.getInstance().addPhoto(photo, figure);
+                    if(photo != null){
+                        resp.sendRedirect("/pages/media.html?id=" + photo.getId());
+                    }
+                }else{
+                    resp.sendRedirect("/");
+                }
+
 
             case "edit":
 
