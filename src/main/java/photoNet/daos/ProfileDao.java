@@ -20,11 +20,18 @@ public class ProfileDao{
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE name = ? ");
 				statement.setString(1, id);
 				try (ResultSet result = statement.executeQuery()){
-					if(result.first()) return new Profile()
-							.setName(result.getString("name"))
-							.setHashpass(result.getString("hashPass"))
-							.setDesc(result.getString("description"))
-							.setProfilPicPath(result.getString("imageProfil"));
+					if(result.first()) {
+						Profile p = new Profile()
+								.setName(result.getString("name"))
+								.setHashpass(result.getString("hashPass"));
+						String desc = result.getString("description");
+						if (!result.wasNull())
+							p.setDesc(desc);
+						String path = result.getString("imageProfil");
+						if (!result.wasNull())
+							p.setProfilPicPath(path);
+						return p;
+					}
 					else throw new ProfileNotFoundException("profile not found: " + id );
 				}
 			}catch(SQLException e){
@@ -34,15 +41,21 @@ public class ProfileDao{
 
 	public Profile getProfileWithPhotosId(String id) throws PhotoNetRuntimeException{
 		try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM users INNER JOIN photos ON users.name = photos.auteur   WHERE name = ? ");
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM users LEFT JOIN photos ON users.name = photos.auteur   WHERE users.name = ? ");
 			statement.setString(1, id);
 			try (ResultSet result = statement.executeQuery()){
 				if(result.first()){
 					Profile p =  new Profile().setName(result.getString("name"))
-							.setHashpass(result.getString("hashPass"))
-							.setDesc(result.getString("description"))
-							.setProfilPicPath(result.getString("imageProfil"))
-							.addPhoto(new Photo().setId(result.getInt("photos.id")));
+							.setHashpass(result.getString("hashPass"));
+					String desc = result.getString("description");
+					if(!result.wasNull())
+							p.setDesc(desc);
+					String path = result.getString("imageProfil");
+					if(!result.wasNull())
+							p.setProfilPicPath(path);
+					int pid = result.getInt("photos.id");
+					if(!result.wasNull())
+							p.addPhoto(new Photo().setId(pid));
 					while(result.next()){
 						p.addPhoto(new Photo().setId(result.getInt("photos.id")));
 					}

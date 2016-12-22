@@ -15,6 +15,10 @@
       <servlet-name>PostServlet</servlet-name>
       <servlet-class>photoNet.servlets.PostServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ImageServlet</servlet-name>
+    <servlet-class>photoNet.servlets.ImageServlet</servlet-class>
+  </servlet>
 
   
   
@@ -31,6 +35,11 @@
     <servlet-name>MainServlet</servlet-name>
     <url-pattern>/main</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ImageServlet</servlet-name>
+    <url-pattern>/image/*</url-pattern>
+  </servlet-mapping>
+  
 
   <filter>
     <filter-name>RedirectFilter</filter-name>

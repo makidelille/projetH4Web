@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.thymeleaf.context.WebContext;
 
+import photoNet.utils.Profile;
 import photoNet.utils.Ref;
 
 public class MainServlet extends AbstractServlet{
@@ -15,7 +16,7 @@ public class MainServlet extends AbstractServlet{
 	
 	@Override
 	protected WebContext buildContext(WebContext context,HttpServletRequest req, HttpServletResponse resp) {
-		context.setVariable(Ref.VAR_NAME, req.getSession().getAttribute(Ref.ATTR_AUTH));
+		context.setVariable(Ref.VAR_PROFILE,(String) req.getSession().getAttribute(Ref.ATTR_AUTH));
 		return context;
 	}
 	

@@ -56,6 +56,15 @@ public class PagesServlets extends AbstractServlet{
 				return old;
 			}
 		});
+		mapping.put("myprofil", new IContextBuilder() {
+			@Override
+			public WebContext build(WebContext old, HttpServletRequest req) {
+				String id = (String) req.getSession().getAttribute(Ref.ATTR_AUTH);
+				Profile p = DataService.getInstance().getProfile(id,true);
+				old.setVariable(Ref.VAR_PROFILE,p);
+				return old;
+			}
+		});
 		mapping.put("media", new IContextBuilder() {
 			@Override
 			public WebContext build(WebContext old, HttpServletRequest req) {
@@ -67,16 +76,18 @@ public class PagesServlets extends AbstractServlet{
 				return old;
 			}
 		});
+
 	}
 
 	private String convertToLocalName(String url){
-		return url.replace("/photoNet/pages/", "").replace(".html", "");
+		return url.replace(Ref.CONTEXT,"").replace("/","").replace("pages", "").replace(".html", "");
 	}
 	
 
 	@Override
 	protected String getTemplateName(HttpServletRequest req) {
 		String local = convertToLocalName(req.getRequestURI());
+		if(local.equals("myprofil")) return "pages/profil";
 		if(mapping.keySet().contains(local)){
 			return "pages/" +local;
 		}
@@ -86,7 +97,7 @@ public class PagesServlets extends AbstractServlet{
 
 	@Override
 	protected WebContext buildContext(WebContext context, HttpServletRequest req, HttpServletResponse resp) {
-		String local = convertToLocalName(req.getContextPath());
+		String local = convertToLocalName(req.getRequestURI());
 		return mapping.keySet().contains(local) ? mapping.get(local).build(context, req) : context;
 	}
 

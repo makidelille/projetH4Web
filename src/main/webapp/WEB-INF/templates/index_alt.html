@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Index</title>
@@ -18,7 +18,7 @@
           <li class="photos"><a href="#">Photos</a></li>
           <li class="about"><a href="#">A propos</a></li>
           <li class="add"><a href="#">Ajouter</a></li>
-          <li class="profil"><a href="#" th:text="${profilName}"> </a></li>
+          <li class="myprofil"><a href="#" th:text="${profil}"> </a></li>
           <li class="deconnection"><a href="#">Se deconnecter</a></li>
         </ul>
 

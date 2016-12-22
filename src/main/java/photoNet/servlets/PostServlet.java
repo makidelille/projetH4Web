@@ -8,9 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * Created by Julien on 18/12/2016.
@@ -24,7 +22,7 @@ public class PostServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        switch(req.getRequestURI().replace("/photoNet/post/", "")){
+        switch(req.getRequestURI().replace(Ref.CONTEXT,"").replace("/","").replace("post", "")){
             case "login":
                 String logName = req.getParameter("name");
                 String logPass = req.getParameter("mdp");

@@ -217,12 +217,12 @@ function onSubmit(){
     document.getElementById('msgBox').parentElement.className ="on";
     if(document.getElementById('login').className == "on"){
         var req = new XMLHttpRequest();
-        req.open("POST","post/login?name=" + document.getElementById("logname").value + "&mdp=" + document.getElementById("logpass").value,true);
+        req.open("POST","post/login?name=" + document.getElementById("logname").value + "&mdp=" + document.getElementById("logmdp").value,true);
         req.contentType =  "application/x-www-form-urlencoded";
         req.onload = function () {
             if(this.response == "ok"){
                 window.location.reload();
-                setCookie('last','profil');
+                setCookie('last','myprofil');
             }else{
                 alert("nope");
             }
@@ -232,18 +232,18 @@ function onSubmit(){
 
     }else{
         //we register
-        var req = new XMLHttpRequest();
-        req.open("POST","post/register?name=" + document.getElementById("regname").value + "&mdp=" + document.getElementById("regmdp").value + "&mdp_confirm=" + document.getElementById("regmdp_confirm").value,true);
-        req.contentType =  "application/x-www-form-urlencoded";
-        req.onload = function () {
+        var req1 = new XMLHttpRequest();
+        req1.open("POST","post/register?name=" + document.getElementById("regname").value + "&mdp=" + document.getElementById("regmdp").value + "&mdp_confirm=" + document.getElementById("regmdp_confirm").value,true);
+        req1.contentType =  "application/x-www-form-urlencoded";
+        req1.onload = function () {
             if(this.response == "ok"){
                 window.location.reload();
-                setCookie('last','profil');
+                setCookie('last','myprofil');
             }else{
                 alert("nope");
             }
         };
-        req.send();
+        req1.send();
 
     }
     return false;
