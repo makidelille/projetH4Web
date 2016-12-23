@@ -1,6 +1,5 @@
 package photoNet.servlets;
 
-import photoNet.daos.CommentDao;
 import photoNet.service.DataService;
 import photoNet.utils.Comment;
 import photoNet.utils.Photo;
@@ -13,10 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Created by Julien on 18/12/2016.
