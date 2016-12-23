@@ -7,16 +7,16 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE photos (
-	`id` INT NOT NULL,
+	`id` INT NOT NULL AUTO_INCREMENT,
 	`auteur` varchar(128) NOT NULL,
 	`titre` varchar(128) NOT NULL,
-	`desciption` varchar(1024),
+	`description` varchar(1024),
 	`image` varchar(512) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `comments` (
-	`id` INT NOT NULL,
+	`id` INT NOT NULL AUTO_INCREMENT,
 	`auteur` varchar(128) NOT NULL,
 	`photoId` INT NOT NULL,
 	`reponse` INT,
