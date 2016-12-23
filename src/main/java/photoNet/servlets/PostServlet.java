@@ -85,10 +85,11 @@ public class PostServlet extends HttpServlet {
             case "comment":
                 if(!"".equals(req.getSession().getAttribute(Ref.ATTR_AUTH))){
                     int photoId = Integer.parseInt(req.getParameter("photoId"));
+                    String color = req.getParameter("color");
                     String comment = req.getParameter("comment");
                     LocalDate time = LocalDate.now();
                     String author = (String) req.getSession().getAttribute(Ref.ATTR_AUTH);
-                    Comment c = new Comment().setAuthor(new Profile().setName(author)).setDate(time).setText(comment).setPhoto(new Photo().setId(photoId));
+                    Comment c = new Comment().setAuthor(new Profile().setName(author)).setDate(time).setText(comment).setPhoto(new Photo().setId(photoId)).setColor(color);
                     int rep = -1;
                     if(req.getParameter("response") != null){
                         rep = Integer.parseInt(req.getParameter("response"));

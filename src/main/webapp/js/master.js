@@ -264,8 +264,9 @@ function onSubmit(){
 
 function postCommment(form,photoid, response){
     var com = form.querySelector("textarea").value;
+    var color = form.querySelector("input[type=\"color\"]").value.replace("#","");
     var req = new XMLHttpRequest();
-    req.open("POST","post/comment?" + "photoId=" + photoid + "&comment="  + com + (response ? "&response=" + response:""),true);
+    req.open("POST","post/comment?" + "photoId=" + photoid + "&comment="  + com +"&color="+ color + (response ? "&response=" + response:""),true);
     req.contentType = "application/x-www-form-urlencoded";
     req.onload = function(){
         if(this.response = "ok")

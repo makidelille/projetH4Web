@@ -51,13 +51,14 @@ public class CommentDao {
     }
 
 
-    public int addNewComment(String author, int photoId, String comment, Date date) throws PhotoNetRuntimeException {
+    public int addNewComment(String author, int photoId, String comment, Date date, String color) throws PhotoNetRuntimeException {
         try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO comments(auteur,photoId,commentaire,date) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO comments(auteur,photoId,commentaire,date,couleur) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1,author);
             statement.setInt(2, photoId);
             statement.setString(3,comment);
             statement.setDate(4,date);
+            statement.setString(5,color);
             int rows = statement.executeUpdate();
             if(rows == 0){
                 throw new CantAddCommentException("no rows affected");
@@ -74,14 +75,15 @@ public class CommentDao {
         }
     }
 
-    public int addNewCommentTo(String author, int photoId, String comment, Date date, int rep) throws PhotoNetRuntimeException{
+    public int addNewCommentTo(String author, int photoId, String comment, Date date, String color, int rep) throws PhotoNetRuntimeException{
         try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO comments(auteur,photoId,commentaire,date, reponse) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO comments(auteur,photoId,commentaire,date,couleur, reponse) VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1,author);
             statement.setInt(2, photoId);
             statement.setString(3,comment);
             statement.setDate(4,date);
-            statement.setInt(5,rep);
+            statement.setString(5,color);
+            statement.setInt(6,rep);
             int rows = statement.executeUpdate();
             if(rows == 0){
                 throw new CantAddCommentException("no rows affected");

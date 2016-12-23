@@ -23,7 +23,7 @@ CREATE TABLE `comments` (
 	`photoId` INT NOT NULL,
 	`reponse` INT,
 	`commentaire` varchar(1024) NOT NULL,
-	`couleur` INT,
+	`couleur` char(6) DEFAULT '000000',
 	`date` DATE NOT NULL,
 	PRIMARY KEY (`id`)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;

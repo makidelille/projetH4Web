@@ -21,7 +21,10 @@
         <form class="addComment" th:onsubmit="${'return postCommment(this,' +  photo.id +')'}">
           <h3>Poster un commentaire</h3>
           <textarea name="commentBox" rows="8" cols="40" placeholder="Your comment here"></textarea>
-          <input type="submit" name="name" value="poster">
+            <label for="clr">Couleur</label>
+            <input id="clr" type="color" name="clr" value="#000000"/>
+            <input type="submit" name="name" value="poster">
+
         </form>
         <section>
             <div class="comments" >
@@ -34,7 +37,7 @@
                       <figcaption th:text="${#temporals.format(comment.date)}">23/06/2016</figcaption>
                     </figure>
                   </a>
-                  <p th:text="${comment.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <p th:text="${comment.text}" th:style="${'color:#' + comment.color}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </section>
                 <section th:each="answer : ${comment.responses}" class="comment answer">
                     <a th:href="${'profil.html?id=' + comment.author.name}">
@@ -44,12 +47,14 @@
                             <figcaption th:text="${#temporals.format(answer.date)}">23/06/2016</figcaption>
                         </figure>
                     </a>
-                    <p th:text="${answer.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p th:text="${answer.text}" th:style="${'color:#' + answer.color}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </section>
                <form class="addComment" th:onsubmit="${'return postCommment(this,' +  photo.id +',' + comment.id +')'}">
                     <h3>Répondre</h3>
                     <textarea name="commentBox" rows="8" cols="40" placeholder="Your comment here"></textarea>
-                    <input type="submit" name="name" value="poster">
+                   <label th:for="${'clr' + comment.id}">Couleur</label>
+                   <input th:id="${'clr' + comment.id}" type="color" name="color"  value="#000000"/>
+                   <input type="submit" name="name" value="poster">
                 </form>
             </div>
             </div>

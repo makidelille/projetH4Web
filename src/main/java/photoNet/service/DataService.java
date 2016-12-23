@@ -97,7 +97,7 @@ public class DataService {
     }
 
     public Photo addPhoto(Photo photo, Part figure) {
-        if(figure == null || photo == null) return null;
+        if(figure == null || photo == null || figure.getSize() == 0) return null;
         try(InputStream is = figure.getInputStream()){
             String uuid = UUID.randomUUID().toString();
             Path target = Paths.get(Ref.PHOTO_MAIN_DIR, uuid + figure.getSubmittedFileName().substring(figure.getSubmittedFileName().lastIndexOf('.')));
@@ -114,7 +114,9 @@ public class DataService {
     public Comment addComment(Comment c, int rep) {
         if(c == null) return null;
         try{
-            return c.setId(rep == -1 ? commentDao.addNewComment(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(), java.sql.Date.valueOf(c.getDate())) : commentDao.addNewCommentTo(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(),  java.sql.Date.valueOf(LocalDate.parse(c.getDate().toString())),rep));
+            return c.setId(rep == -1 ?
+                    commentDao.addNewComment(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(), java.sql.Date.valueOf(c.getDate()), c.getColor())
+                    : commentDao.addNewCommentTo(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(),  java.sql.Date.valueOf(LocalDate.parse(c.getDate().toString())),c.getColor(),rep));
         } catch (PhotoNetRuntimeException e) {
             e.printStackTrace();
             return null;
