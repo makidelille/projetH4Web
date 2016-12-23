@@ -87,4 +87,14 @@ public class PhotoDao {
 
         return l;
     }
+
+    public boolean deletePhoto(String photoId)  throws PhotoNetRuntimeException {
+        try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM photos WHERE id = ?");
+            statement.setString(1,photoId);
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw  new DaoRuntimeException("excetpiton raised in the photoDao",e);
+        }
+    }
 }

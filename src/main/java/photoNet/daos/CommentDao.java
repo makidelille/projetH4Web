@@ -97,4 +97,14 @@ public class CommentDao {
             throw new DaoRuntimeException("excetpiton raised in the photoDao",e);
         }
     }
+
+    public boolean deleteCommentsPhoto(String photoId) throws PhotoNetRuntimeException{
+        try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM comments WHERE photoId = ?");
+            statement.setString(1,photoId);
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw  new DaoRuntimeException("excetpiton raised in the photoDao",e);
+        }
+    }
 }

@@ -115,7 +115,19 @@ public class PostServlet extends HttpServlet {
                 }
                 resp.sendRedirect(Ref.CONTEXT);
                 break;
-
+            case "delete":
+                if(!"".equals(req.getSession().getAttribute(Ref.ATTR_AUTH))){
+                    String photoId = req.getParameter("id");
+                    Photo photo = DataService.getInstance().getPhoto(photoId);
+                    if(photo != null && photo.getAuthor().getName().equals(req.getSession().getAttribute(Ref.ATTR_AUTH))){
+                        if(DataService.getInstance().deletePhoto(photoId)){
+                            resp.getOutputStream().print("ok");
+                            break;
+                        }
+                    }
+                }
+                resp.getOutputStream().print("nok");
+                break;
             default:
                 resp.sendRedirect(Ref.CONTEXT);
         }

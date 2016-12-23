@@ -170,7 +170,13 @@ function editProfil(){
   document.querySelectorAll('#medias a').forEach(function(a){
     a.onclick = function(event){
       if(confirm("do you want to delete ?")){
-        console.log(this);
+        var id = this.href.substring(this.href.indexOf("id=")).replace("id=","");
+          var req = new XMLHttpRequest();
+          req.open("POST", "post/delete?id="  + id,true);
+          req.onload= function(){
+              if(this.response == "ok") window.location.reload();
+          };
+          req.send();
       }else{
 
       }

@@ -166,4 +166,21 @@ public class DataService {
         }
 
     }
+
+    public boolean deletePhoto(String photoId) {
+        if(photoId == null || photoId.isEmpty()) return false;
+        try{
+            Photo p = getPhoto(photoId);
+            if(p != null){
+                String path = p.getPath();
+                Files.delete(Paths.get(path));
+                return commentDao.deleteCommentsPhoto(photoId) && photoDao.deletePhoto(photoId);
+            }
+            return false;
+
+        }catch(PhotoNetRuntimeException | IOException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
