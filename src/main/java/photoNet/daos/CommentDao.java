@@ -26,12 +26,12 @@ public class CommentDao {
 
                 while(result.next()){
                     Comment c = new Comment()
-                            .setId(result.getInt("comments.id"))
-                            .setText(result.getString("comments.commentaire"))
-                            .setDate(result.getDate("comments.date"))
-                            .setColor(result.getString("comments.couleur"))
-                            .setAuthor(new Profile().setName("users.name"));
-                    int ans = result.getInt("comments.response");
+                            .setId(result.getInt("id"))
+                            .setText(result.getString("commentaire"))
+                            .setDate(result.getDate("date").toLocalDate())
+                            .setColor(result.getString("couleur"))
+                            .setAuthor(new Profile().setName(result.getString("auteur")));
+                    int ans = result.getInt("reponse");
                     if(!result.wasNull()){
                         //c'est une réponse
                         for(Comment cm : l) if(cm.getId() == ans) cm.addResponse(c);

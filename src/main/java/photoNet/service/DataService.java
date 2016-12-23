@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -109,7 +110,7 @@ public class DataService {
     public Comment addComment(Comment c, int rep) {
         if(c == null) return null;
         try{
-            return c.setId(rep == -1 ? commentDao.addNewComment(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(), (java.sql.Date) c.getDate()) : commentDao.addNewCommentTo(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(), (java.sql.Date) c.getDate(),rep));
+            return c.setId(rep == -1 ? commentDao.addNewComment(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(), java.sql.Date.valueOf(c.getDate())) : commentDao.addNewCommentTo(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(),  java.sql.Date.valueOf(LocalDate.parse(c.getDate().toString())),rep));
         } catch (PhotoNetRuntimeException e) {
             e.printStackTrace();
             return null;

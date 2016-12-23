@@ -18,23 +18,23 @@
             </figure>
           </article>
         </section>
-        <section id="addComment">
+        <form class="addComment" th:onsubmit="${'return postCommment(this,' +  photo.id +')'}">
           <h3>Poster un commentaire</h3>
           <textarea name="commentBox" rows="8" cols="40" placeholder="Your comment here"></textarea>
-          <input type="button" name="name" value="poster">
-          <div id="msgBox">
+          <input type="submit" name="name" value="poster">
+          <div id="msgBox" style="display: none">
             <p>En cours...</p>
             <img src="img/load-icon.png" id="loadImg"/>
           </div>
-        </section>
+        </form>
         <section>
-            <div class="comments">
-            <div  th:each="comment : ${comments}">
-              <section class="comment">
-                <a th:href="${'profil.html?id=' + comment.author}">
+            <div class="comments" >
+            <div th:each="comment : ${comments}">
+            <section class="comment">
+                <a th:href="${'profil.html?id=' + comment.author.name}">
                   <figure>
-                      <img th:src="${'image/profil?id=' + comment.author}" alt="">
-                      <figcaption th:text="${comment.author}">Name</figcaption>
+                      <img th:src="${'image/profil?id=' + comment.author.name}" alt="">
+                      <figcaption th:text="${comment.author.name}">Name</figcaption>
                       <figcaption th:text="${comment.date}">23/06/2016</figcaption>
                     </figure>
                   </a>
@@ -44,13 +44,20 @@
                 </aside>
                 </section>
                 <section th:each="answer : ${comment.responses}" class="comment answer">
-                      <figure>
-                        <img th:src="${'image/profil?id=' + answer.author}" alt="">
-                        <figcaption th:text="${answer.author}">Name</figcaption>
-                        <figcaption th:text="${answer.date}">23/06/2016</figcaption>
-                      </figure>
-                      <p th:text="${answer.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  </section>
+                    <a th:href="${'profil.html?id=' + comment.author.name}">
+                        <figure>
+                            <img th:src="${'image/profil?id=' + answer.author.name}" alt="">
+                            <figcaption th:text="${answer.author.name}">Name</figcaption>
+                            <figcaption th:text="${answer.date}">23/06/2016</figcaption>
+                        </figure>
+                    </a>
+                    <p th:text="${answer.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </section>
+               <form class="addComment" th:onsubmit="${'return postCommment(this,' +  photo.id +',' + comment.id +')'}">
+                    <h3>Poster un commentaire</h3>
+                    <textarea name="commentBox" rows="8" cols="40" placeholder="Your comment here"></textarea>
+                    <input type="submit" name="name" value="poster">
+                </form>
             </div>
             </div>
 

@@ -1,5 +1,6 @@
 package photoNet.utils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ public class Comment {
 	private String text;
 	private Profile author;
 	private List<Comment> responses = new ArrayList<>();
-	private Date date;
+	private LocalDate date;
 	private String color;
 
 	public int getId() {
@@ -64,11 +65,11 @@ public class Comment {
 		return this;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public Comment setDate(Date date) {
+	public Comment setDate(LocalDate date) {
 		this.date = date;
 		return this;
 	}

@@ -88,7 +88,7 @@ function loadPage(baseUrl){
             });
             setCookie("last",site,7);
         }
-   }
+   };
   update.send();
 }
 
@@ -261,3 +261,19 @@ function onSubmit(){
      ele.className = ele.className + " hidden";
    }
  }
+
+function postCommment(form,photoid, response){
+    var com = form.querySelector("textarea").value;
+    var req = new XMLHttpRequest();
+    req.open("POST","post/comment?" + "photoId=" + photoid + "&comment="  + com + (response ? "&response=" + response:""),true);
+    req.contentType = "application/x-www-form-urlencoded";
+    req.onload = function(){
+        if(this.response = "ok")
+            window.location.reload();
+        else{
+            alert("nope");
+        }
+    };
+    req.send();
+    return false;
+}

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -83,16 +84,16 @@ public class PostServlet extends HttpServlet {
                 if(!"".equals(req.getSession().getAttribute(Ref.ATTR_AUTH))){
                     int photoId = Integer.parseInt(req.getParameter("photoId"));
                     String comment = req.getParameter("comment");
-                    Date time = new Date();
+                    LocalDate time = LocalDate.now();
                     String author = (String) req.getSession().getAttribute(Ref.ATTR_AUTH);
                     Comment c = new Comment().setAuthor(new Profile().setName(author)).setDate(time).setText(comment).setPhoto(new Photo().setId(photoId));
                     int rep = -1;
-                    if(req.getParameter("responseTo") != null){
-                        rep = Integer.parseInt(req.getParameter("responseTo"));
+                    if(req.getParameter("response") != null){
+                        rep = Integer.parseInt(req.getParameter("response"));
                     }
-                    DataService.getInstance().addComment(c,rep);
-
-
+                    c = DataService.getInstance().addComment(c,rep);
+                    if(c != null) resp.getOutputStream().print("ok");
+                    else resp.getOutputStream().print("nok");
 
                 }else{
                     resp.sendRedirect(Ref.CONTEXT);
