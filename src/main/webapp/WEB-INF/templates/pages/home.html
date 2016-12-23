@@ -8,17 +8,17 @@
   <body>
         <section id="vitrine_photo">
             <header>
-              <h1>Photos Aléatoires</h1>
+              <h1>10 Photos Aléatoires </h1>
             </header>
             <article>
-              <div  th:each = "photo : ${photos}">
+              <span  th:each = "photo : ${photos}">
               <a th:href="${'media.html?id=' + photo.id}">
                 <figure>
                   <img th:src="${'image/photo?id=' + photo.id}" alt="">
                   <figcaption th:text="${photo.title}">Légende</figcaption>
                 </figure>
               </a>
-              </div>
+              </span>
               <aside>
                 <a href="photos.html"></a>
               </aside>

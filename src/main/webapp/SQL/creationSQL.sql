@@ -1,10 +1,12 @@
+SET character set utf8;
+
 CREATE TABLE `users` (
 	`name` varchar(128) NOT NULL,
 	`hashPass` varchar(128) NOT NULL,
 	`description` varchar(512),
 	`imageProfil` varchar(512),
 	PRIMARY KEY (`name`)
-);
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE photos (
 	`id` INT NOT NULL AUTO_INCREMENT,
@@ -13,7 +15,7 @@ CREATE TABLE photos (
 	`description` varchar(1024),
 	`image` varchar(512) NOT NULL,
 	PRIMARY KEY (`id`)
-);
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE `comments` (
 	`id` INT NOT NULL AUTO_INCREMENT,
@@ -24,7 +26,7 @@ CREATE TABLE `comments` (
 	`couleur` INT,
 	`date` DATE NOT NULL,
 	PRIMARY KEY (`id`)
-);
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE photos ADD CONSTRAINT `Photos_fk0` FOREIGN KEY (`auteur`) REFERENCES `users`(`name`);
 

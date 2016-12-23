@@ -70,7 +70,7 @@ function loadPage(baseUrl){
    update.open("GET", pageUrl, true);
    update.onreadystatechange = function () {
        if(update.readyState === 4 && (update.status === 200 || update.status == 0)){
-            Array.prototype.forEach.call(document.querySelectorAll("link:not([href=\"css/master.css\"]):not([href=\"css/mobile.css\"])"), function(ele){
+            Array.prototype.forEach.call(document.querySelectorAll("link:not([href=\"css/master.css\"]):not([href=\"css/mobile.css\"]):not([href=\"img/icon.ico\""), function(ele){
                     ele.remove();
             });
             var html  = document.createElement('html');

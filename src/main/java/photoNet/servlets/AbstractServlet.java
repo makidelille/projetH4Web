@@ -26,6 +26,7 @@ public abstract class AbstractServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("serving :  "+ req.getRequestURI());
 		Locale.setDefault(Locale.FRENCH);
+		resp.setCharacterEncoding("UTF-8");
 		this.createTemplateEngine(req).process(getTemplateName(req), this.buildContext(new WebContext(req, resp, req.getServletContext()), req,resp), resp.getWriter());
 		
 	}
@@ -49,6 +50,7 @@ public abstract class AbstractServlet extends HttpServlet{
 		templateResolver.setTemplateMode(TemplateMode.HTML);
 		templateResolver.setPrefix("/WEB-INF/templates/");
 		templateResolver.setSuffix(".html");
+		templateResolver.setCharacterEncoding("UTF-8");
 		
 		TemplateEngine templateEngine = new TemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver);

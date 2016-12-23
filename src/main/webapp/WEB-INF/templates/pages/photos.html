@@ -2,35 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Toutes les photos</title>
     <link rel="stylesheet" href="css/search.css">
   </head>
   <body>
     <section id="listPhotos">
         <header>
-          <h1>Parcourir les photos</h1>
-          <nav>
-            <label for="filter">Trier par : </label>
-            <select id="filter" class="" name="filter">
-                <option value="option1">option1</option>
-                <option value="option2">option2</option>
-                <option value="option3">option3</option>
-                <option value="option4">option4</option>
-            </select>
-            <label for="recherche"> Chercher : </label>
-            <input type="search" name="" id="recherche">
-            <button type="button" name="button">Go</button>
-          </nav>
+          <h1>Toutes les photos</h1>
         </header>
         <article id="list">
-          <div  th:each = "photo : ${photos}">
+          <span  th:each = "photo : ${photos}">
             <a th:href="${'media.html?id=' + photo.id}">
               <figure>
                 <img th:src="${'image/photo?id=' + photo.id}" alt="">
                 <figcaption th:text="${photo.title}">Légende</figcaption>
               </figure>
             </a>
-          </div>
+          </span>
         </article>
 
     </section>

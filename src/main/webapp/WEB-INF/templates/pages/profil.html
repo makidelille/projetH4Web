@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title th:text="${'Profil : ' + profil.name}"></title>
     <link rel="stylesheet" href="css/profil.css">
   </head>
   <body>
@@ -25,13 +25,15 @@
           <header>
             <h1>Photos</h1>
           </header>
-          <article th:each="photo : ${profil.photos}">
+          <article>
+            <span th:each="photo : ${profil.photos}">
             <a th:href="${'media.html?id=' + photo.id}" >
               <figure>
                 <img th:src="${'image/photo?id=' + photo.id}" alt="">
                 <figcaption th:text="${photo.title}">Légende</figcaption>
               </figure>
             </a>
+            </span>
           </article>
         </section>
 
