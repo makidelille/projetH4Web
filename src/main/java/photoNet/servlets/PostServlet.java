@@ -35,8 +35,8 @@ public class PostServlet extends HttpServlet {
             case "login":
                 String logName = req.getParameter("name");
                 String logPass = req.getParameter("mdp");
-                Profile p = DataService.getInstance().getProfile(logName, false);
-                if(p != null && p.getHashpass().equals(logPass)){
+                Profile p = DataService.getInstance().getProfileAndCheckForPassword(logName, logPass);
+                if(p != null){
                     req.getSession().setAttribute(Ref.ATTR_AUTH, p.getName());
                     resp.getWriter().print("ok");
                 }else{

@@ -5,10 +5,7 @@ import photoNet.daos.PhotoDao;
 import photoNet.daos.ProfileDao;
 import photoNet.exceptions.PhotoNetRuntimeException;
 import photoNet.exceptions.ProfileNotFoundException;
-import photoNet.utils.Comment;
-import photoNet.utils.Photo;
-import photoNet.utils.Profile;
-import photoNet.utils.Ref;
+import photoNet.utils.*;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
@@ -16,6 +13,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -88,11 +87,12 @@ public class DataService {
     public boolean createNewUser(String regName, String regPass) {
         if(regName == null || regPass == null) return false;
         try {
-            return profileDao.addNewPorfile(regName,regPass);
-        } catch (PhotoNetRuntimeException e) {
+            return profileDao.addNewPorfile(regName, Password.getSaltedHash(regPass));
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+
 
     }
 
@@ -184,5 +184,18 @@ public class DataService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    // return null if not valid password
+    public Profile getProfileAndCheckForPassword(String logName, String logPass) {
+        Profile p = getProfile(logName,false);
+        try {
+            if(Password.check(logPass,p.getHashpass())){
+                return p;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
