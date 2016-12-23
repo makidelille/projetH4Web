@@ -19,6 +19,11 @@
     <servlet-name>ImageServlet</servlet-name>
     <servlet-class>photoNet.servlets.ImageServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>InitServlet</servlet-name>
+    <servlet-class>photoNet.servlets.InitServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
 
   
   

@@ -6,19 +6,19 @@
     <link rel="stylesheet" href="css/add.css">
   </head>
   <body>
-    <form action="add">
+    <form  action="post/add" method="post" enctype="multipart/form-data">
       <div>
         <input type="text" name="titre" id="" placeholder="Titre">
       </div>
       <div>
-        <input type="file" id="selectedFile" style="display: none;" onchange="imgLoad(this);"/>
+        <input type="file" name="file" id="selectedFile" style="display: none;" onchange="imgLoad(this,'imgUpload');"/>
         <img id="imgUpload" src="http://placehold.it/500x500" onclick="document.getElementById('selectedFile').click();" />
       </div>
       <div>
         <textarea name="desc" rows="8" cols="40" placeholder="description"></textarea>
       </div>
       <div>
-        <input type="submit" name="name" value="Envoyer">
+        <input type="submit" name="envoyer" value="Envoyer">
       </div>
     </form>
   </body>

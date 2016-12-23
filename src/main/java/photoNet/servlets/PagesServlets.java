@@ -68,7 +68,7 @@ public class PagesServlets extends AbstractServlet{
 		mapping.put("media", new IContextBuilder() {
 			@Override
 			public WebContext build(WebContext old, HttpServletRequest req) {
-				String photoId = req.getParameter("photo");
+				String photoId = req.getParameter("id");
 				Photo p = DataService.getInstance().getPhoto(photoId);
 				old.setVariable(Ref.VAR_PHOTO, p);
 				List<Comment> comments = DataService.getInstance().getCommentsForPhoto(photoId);

@@ -36,11 +36,15 @@ public class PhotoDao {
             statement.setString(2, name);
             statement.setString(3,desc);
             statement.setString(4,imagePath);
-            try(ResultSet result = statement.getGeneratedKeys()){
-                if(result.next()){
-                    return result.getInt(1);
+            int rows = statement.executeUpdate();
+            if(rows == 0){
+                throw new CantAddPhotoException("no rows affected");
+            }
+            try(ResultSet generatedKeys = statement.getGeneratedKeys()){
+                if(generatedKeys.next()){
+                    return generatedKeys.getInt(1);
                 }else{
-                    throw new CantAddPhotoException("photo could be added");
+                    throw new CantAddPhotoException("failed to get id");
                 }
             }
         } catch (SQLException e) {

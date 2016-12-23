@@ -95,7 +95,7 @@ function loadPage(baseUrl){
 function aOnClick(event){
   if(this.href.startsWith(window.location.origin)){
     event.preventDefault();
-    loadPage(this.href);
+    loadPage(this.href.replace(window.location.origin,""));
     return false;
   }
 }
@@ -106,7 +106,7 @@ function disconnect(){
 
 }
 
-function  imgLoad(evt, target) {
+function  imgLoad(evt, img) {
       var tgt = evt.target || window.event.srcElement,
           files = tgt.files;
 
@@ -115,8 +115,8 @@ function  imgLoad(evt, target) {
 
           var fr = new FileReader();
           fr.onload = function () {
-              document.getElementById(target).src = fr.result;
-          }
+              document.getElementById(img).src = fr.result;
+          };
           fr.readAsDataURL(files[0]);
       }
 }

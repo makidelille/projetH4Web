@@ -8,6 +8,6 @@ public class Ref {
 	public static final String VAR_PHOTO = "photo";
 	public static final String VAR_COMMENTS = "comments";
 
-	public static final String CONTEXT = "/photoNet";
-	public static final String PHOTO_MAIN_DIR = "/"; //TODO
+	public static String CONTEXT = "";
+	public static String PHOTO_MAIN_DIR = "";
 }

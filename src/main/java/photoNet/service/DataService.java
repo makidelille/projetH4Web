@@ -93,10 +93,9 @@ public class DataService {
 
     public Photo addPhoto(Photo photo, Part figure) {
         if(figure == null || photo == null) return null;
-        try{
-            InputStream is = figure.getInputStream();
+        try(InputStream is = figure.getInputStream()){
             String uuid = UUID.randomUUID().toString();
-            Path target = Paths.get(Ref.PHOTO_MAIN_DIR, uuid, figure.getSubmittedFileName().substring(figure.getSubmittedFileName().lastIndexOf('.')));
+            Path target = Paths.get(Ref.PHOTO_MAIN_DIR, uuid + figure.getSubmittedFileName().substring(figure.getSubmittedFileName().lastIndexOf('.')));
             Files.copy(is, target);
             photo.setPath(target.toString());
             photo.setId(photoDao.addPhoto(photo.getTitle(),photo.getDesc(), photo.getAuthor().getName(), photo.getPath()));
@@ -105,5 +104,15 @@ public class DataService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Comment addComment(Comment c, int rep) {
+        if(c == null) return null;
+        try{
+            return c.setId(rep == -1 ? commentDao.addNewComment(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(), (java.sql.Date) c.getDate()) : commentDao.addNewCommentTo(c.getAuthor().getName(), c.getPhoto().getId(),c.getText(), (java.sql.Date) c.getDate(),rep));
+        } catch (PhotoNetRuntimeException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

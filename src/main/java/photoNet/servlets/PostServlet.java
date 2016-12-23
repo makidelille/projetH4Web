@@ -1,6 +1,8 @@
 package photoNet.servlets;
 
+import photoNet.daos.CommentDao;
 import photoNet.service.DataService;
+import photoNet.utils.Comment;
 import photoNet.utils.Photo;
 import photoNet.utils.Profile;
 import photoNet.utils.Ref;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by Julien on 18/12/2016.
@@ -61,25 +64,45 @@ public class PostServlet extends HttpServlet {
 
             case "add":
                 if(!"".equals(req.getSession().getAttribute(Ref.ATTR_AUTH))){
-                    String name = req.getParameter("name");
+                    String name = req.getParameter("titre");
                     String desc = req.getParameter("desc");
                     String author = (String) req.getSession().getAttribute(Ref.ATTR_AUTH);
-                    Part figure = req.getPart("image");
+                    Part figure = req.getPart("file");
                     Photo photo = new Photo().setTitle(name).setAuthor(new Profile().setName(author)).setDesc(desc);
                     photo = DataService.getInstance().addPhoto(photo, figure);
                     if(photo != null){
-                        resp.sendRedirect("/pages/media.html?id=" + photo.getId());
+                        resp.sendRedirect(Ref.CONTEXT + "/pages/media.html?id=" + photo.getId());
+                    }else{
+                        resp.sendRedirect(Ref.CONTEXT);
                     }
                 }else{
-                    resp.sendRedirect("/");
+                    resp.sendRedirect(Ref.CONTEXT);
                 }
+                break;
+            case "comment":
+                if(!"".equals(req.getSession().getAttribute(Ref.ATTR_AUTH))){
+                    int photoId = Integer.parseInt(req.getParameter("photoId"));
+                    String comment = req.getParameter("comment");
+                    Date time = new Date();
+                    String author = (String) req.getSession().getAttribute(Ref.ATTR_AUTH);
+                    Comment c = new Comment().setAuthor(new Profile().setName(author)).setDate(time).setText(comment).setPhoto(new Photo().setId(photoId));
+                    int rep = -1;
+                    if(req.getParameter("responseTo") != null){
+                        rep = Integer.parseInt(req.getParameter("responseTo"));
+                    }
+                    DataService.getInstance().addComment(c,rep);
 
 
+
+                }else{
+                    resp.sendRedirect(Ref.CONTEXT);
+                }
+                break;
             case "edit":
 
 
             default:
-                resp.sendRedirect("/");
+                resp.sendRedirect(Ref.CONTEXT);
         }
     }
 
