@@ -41,7 +41,22 @@ public class PagesServlets extends AbstractServlet{
 	public PagesServlets() {
 		super("pages/*");
 		mapping = new HashMap<>();
-		mapping.put("home", IContextBuilder.DEFAULT);
+		mapping.put("home", new IContextBuilder() {
+			@Override
+			public WebContext build(WebContext old, HttpServletRequest req) {
+				List<Photo> photoList = DataService.getInstance().getRandomPhotos(10);
+				old.setVariable(Ref.VAR_PHOTOS, photoList);
+				return old;
+			}
+		});
+		mapping.put("photos", new IContextBuilder() {
+			@Override
+			public WebContext build(WebContext old, HttpServletRequest req) {
+				List<Photo> photoList = DataService.getInstance().getAllPhotos();
+				old.setVariable(Ref.VAR_PHOTOS, photoList);
+				return old;
+			}
+		});
 		mapping.put("about", IContextBuilder.DEFAULT);
 		mapping.put("connection",IContextBuilder.DEFAULT);
 		mapping.put("deconnection", IContextBuilder.DEFAULT);
@@ -50,9 +65,10 @@ public class PagesServlets extends AbstractServlet{
 
 			@Override
 			public WebContext build(WebContext old, HttpServletRequest req) {
-				String id = req.getParameter("name");
+				String id = req.getParameter("id");
 				Profile p = DataService.getInstance().getProfile(id, true);
 				old.setVariable(Ref.VAR_PROFILE, p);
+				old.setVariable(Ref.VAR_EDITBALE, false);
 				return old;
 			}
 		});
@@ -62,6 +78,7 @@ public class PagesServlets extends AbstractServlet{
 				String id = (String) req.getSession().getAttribute(Ref.ATTR_AUTH);
 				Profile p = DataService.getInstance().getProfile(id,true);
 				old.setVariable(Ref.VAR_PROFILE,p);
+				old.setVariable(Ref.VAR_EDITBALE, true);
 				return old;
 			}
 		});
@@ -76,7 +93,6 @@ public class PagesServlets extends AbstractServlet{
 				return old;
 			}
 		});
-
 	}
 
 	private String convertToLocalName(String url){

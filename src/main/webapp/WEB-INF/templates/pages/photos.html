@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Index</title>
@@ -11,7 +11,7 @@
           <h1>Parcourir les photos</h1>
           <nav>
             <label for="filter">Trier par : </label>
-            <select class="" name="filter">
+            <select id="filter" class="" name="filter">
                 <option value="option1">option1</option>
                 <option value="option2">option2</option>
                 <option value="option3">option3</option>
@@ -23,69 +23,14 @@
           </nav>
         </header>
         <article id="list">
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/450x150" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/150x300" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/200x200" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/50x50" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/150x150" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/150x150" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/150x150" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/150x150" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/150x150" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <a href="media.html">
-            <figure>
-              <img src="http://placehold.it/150x150" alt="">
-              <figcaption>Légende</figcaption>
-            </figure>
-          </a>
-          <aside>
-            <a href="media.html"></a>
-          </aside>
+          <div  th:each = "photo : ${photos}">
+            <a th:href="${'media.html?id=' + photo.id}">
+              <figure>
+                <img th:src="${'image/photo?id=' + photo.id}" alt="">
+                <figcaption th:text="${photo.title}">Légende</figcaption>
+              </figure>
+            </a>
+          </div>
         </article>
 
     </section>

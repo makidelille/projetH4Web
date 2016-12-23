@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -42,7 +43,10 @@ public class DataService {
         if(id == null) return null;
         try {
             return withPhotos ? profileDao.getProfileWithPhotosId(id) : profileDao.getProfile(id);
-        } catch (PhotoNetRuntimeException e) {
+        }catch(ProfileNotFoundException e1) {
+            System.out.println(e1.getMessage());
+            return null;
+        }catch (PhotoNetRuntimeException e) {
             e.printStackTrace();
             return null;
         }
@@ -115,5 +119,51 @@ public class DataService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Photo> getRandomPhotos(int i) {
+        if(i < 0) return new ArrayList<>();
+        try{
+            return photoDao.getRandomPhotos(i);
+        }catch(PhotoNetRuntimeException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Photo> getAllPhotos() {
+        try{
+            return photoDao.getAllPhotos();
+        }catch(PhotoNetRuntimeException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public Profile updateProfile(Profile prof, Part profilePic) {
+        if(prof == null) return null;
+        if(profilePic != null && profilePic.getSize() > 0)
+            try(InputStream is = profilePic.getInputStream()){
+                String uuid = UUID.randomUUID().toString();
+                Path target = Paths.get(Ref.PRROFIL_MAIN_DIR, uuid + profilePic.getSubmittedFileName().substring(profilePic.getSubmittedFileName().lastIndexOf('.')));
+                Files.copy(is, target);
+                prof.setProfilPicPath(target.toString());
+                profileDao.updateProfileWithPhoto(prof.getName(), prof.getDesc(), prof.getProfilPicPath());
+                return prof;
+            } catch (IOException | PhotoNetRuntimeException e) {
+                e.printStackTrace();
+                return null;
+            }
+        else{
+            try {
+                profileDao.updateProfile(prof.getName(), prof.getDesc());
+                return prof;
+            } catch (PhotoNetRuntimeException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
     }
 }

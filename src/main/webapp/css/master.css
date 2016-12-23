@@ -10,7 +10,7 @@ body{
   background :-webkit-radial-gradient(#e2e2e2, #313131); /* Safari 5.1 to 6.0 */
   background: -o-radial-gradient(#e2e2e2, #313131); /* For Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(#e2e2e2, #313131); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(rgba(#E2E2E2,.2), #313131); /* Standard syntax */
+  background: radial-gradient(rgba(226, 226, 226,.2), #313131); /* Standard syntax */
 }
 
 #mainHeader{

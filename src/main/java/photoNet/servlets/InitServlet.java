@@ -28,7 +28,8 @@ public class InitServlet extends HttpServlet {
             return;
         }
         Ref.CONTEXT = prop.getProperty("server.context");
-        Ref.PHOTO_MAIN_DIR = prop.getProperty("upload.location");
+        Ref.PHOTO_MAIN_DIR = prop.getProperty("upload.photo.location");
+        Ref.PRROFIL_MAIN_DIR = prop.getProperty("upload.profile.location");
         System.out.println("initializing done !");
     }
 }

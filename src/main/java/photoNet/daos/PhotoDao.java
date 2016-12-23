@@ -8,6 +8,8 @@ import photoNet.utils.Photo;
 import photoNet.utils.Profile;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PhotoDao {
 
@@ -51,5 +53,38 @@ public class PhotoDao {
            throw new DaoRuntimeException("excetpiton raised in the photoDao",e);
         }
 
+    }
+
+    public List<Photo> getRandomPhotos(int i) throws PhotoNetRuntimeException{
+        List<Photo> l = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM photos ORDER BY rand() LIMIT ?");
+            statement.setInt(1,i);
+            try(ResultSet result = statement.executeQuery()){
+                while(result.next()){
+                    l.add(new Photo().setId(result.getInt("id")).setTitle(result.getString("titre")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoRuntimeException("excetpiton raised in the photoDao",e);
+        }
+
+        return l;
+    }
+
+    public List<Photo> getAllPhotos() throws PhotoNetRuntimeException{
+        List<Photo> l = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM photos");
+            try(ResultSet result = statement.executeQuery()){
+                while(result.next()){
+                    l.add(new Photo().setId(result.getInt("id")).setTitle(result.getString("titre")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoRuntimeException("excetpiton raised in the photoDao",e);
+        }
+
+        return l;
     }
 }

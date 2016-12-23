@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet"  href="css/index.css">
@@ -8,69 +8,17 @@
   <body>
         <section id="vitrine_photo">
             <header>
-              <h1>Top Photos</h1>
+              <h1>Photos Aléatoires</h1>
             </header>
             <article>
-              <a href="media.html">
+              <div  th:each = "photo : ${photos}">
+              <a th:href="${'media.html?id=' + photo.id}">
                 <figure>
-                  <img src="http://placehold.it/450x150" alt="">
-                  <figcaption>Légende</figcaption>
+                  <img th:src="${'image/photo?id=' + photo.id}" alt="">
+                  <figcaption th:text="${photo.title}">Légende</figcaption>
                 </figure>
               </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/150x300" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/200x200" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/50x50" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/150x150" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/150x150" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/150x150" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/150x150" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/150x150" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
-              <a href="media.html">
-                <figure>
-                  <img src="http://placehold.it/150x150" alt="">
-                  <figcaption>Légende</figcaption>
-                </figure>
-              </a>
+              </div>
               <aside>
                 <a href="photos.html"></a>
               </aside>

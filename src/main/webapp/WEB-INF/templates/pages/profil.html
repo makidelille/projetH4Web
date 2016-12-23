@@ -7,13 +7,19 @@
   </head>
   <body>
         <section id="infos">
+          <form enctype="multipart/form-data" method="post" th:action="${'post/edit?name=' + profil.name}">
           <figure>
-            <img th:src="${'image/profil?id=' + profil.name}" alt=""/>
+            <img id="profilPic" th:src="${'image/profil?id=' + profil.name}" alt=""/>
             <figcaption th:text="${profil.name}">NOM</figcaption>
           </figure>
+          <input  th:if="${editable}" id="profilPicInput" type="file" name="img" value="" style="display:none" onchange="imgLoad(this, 'profilPic');"/>
           <div th:text="${profil.desc}">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </div>
+          <textarea  th:if="${editable}" name="profilDesc" rows="12" onkeydown="textAreaAdjust(this)" th:text="${profil.desc}"></textarea>
+          <button th:if="${editable}" type="button" name="Edit" onclick="editProfil()">Edit</button>
+            <button th:if="${editable}" type="submit" name="Save" disabled>Save</button>
+          </form>
         </section>
         <section id="medias">
           <header>

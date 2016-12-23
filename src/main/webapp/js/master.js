@@ -101,6 +101,9 @@ function aOnClick(event){
 }
 
 function disconnect(){
+    var req = new XMLHttpRequest();
+    req.open("POST","post/logout",true);
+    req.send();
     clearCookie();
     window.location.reload();
 
@@ -152,22 +155,22 @@ function getCookie(cname) {
 
 function clearCookie(){
   document.cookie = "last=;expires=" + new Date().toUTCString();
+    setCookie("last","home",7);
 }
 
 
 function editProfil(){
   document.getElementById('infos').className ="editable";
   document.getElementById('medias').className ="editable";
-  document.querySelector('button[name="Edit"]').onclick = saveProfil;
-  document.querySelector('button[name="Edit"]').innerText = "Save";
-  document.querySelector('button[name="Edit"]').name = "Save";
+  document.querySelector('button[name="Edit"]').disabled = true;
+    document.querySelector('button[name="Save"]').disabled = null;
 
   textAreaAdjust(document.querySelector("#infos textarea"));
 
   document.querySelectorAll('#medias a').forEach(function(a){
     a.onclick = function(event){
       if(confirm("do you want to delete ?")){
-        //Supprimer
+        console.log(this);
       }else{
 
       }
@@ -183,22 +186,6 @@ function editProfil(){
 
 }
 
-function saveProfil(){
-  document.getElementById('infos').className ="";
-  document.getElementById('medias').className ="";
-  document.querySelector('button[name="Save"]').onclick = editProfil;
-  document.querySelector('button[name="Save"]').innerText = "Edit";
-  document.querySelector('button[name="Save"]').name = "Edit";
-
-  document.querySelectorAll('#medias a').forEach(function(a){
-    a.onclick = aOnClick;
-  });
-
-  document.querySelector('#infos figure').onclick = function(){};
-
-  //send update
-}
-
 function toggleLogin(){
    document.getElementById('msgBox').parentElement.className = "";
    if(document.getElementById('login').className == "on"){
@@ -212,6 +199,11 @@ function toggleLogin(){
    }
  }
 
+function failedConnection(info){
+    document.getElementById('msgBox').parentElement.className ="";
+    document.getElementById('msgBoxInfo').innerHTML = info;
+}
+
 
 function onSubmit(){
     document.getElementById('msgBox').parentElement.className ="on";
@@ -224,7 +216,7 @@ function onSubmit(){
                 window.location.reload();
                 setCookie('last','myprofil');
             }else{
-                alert("nope");
+                failedConnection("impossible de se connecter ! Les indentifiants sont ils corrects ?");
             }
         };
         req.send();
@@ -239,8 +231,10 @@ function onSubmit(){
             if(this.response == "ok"){
                 window.location.reload();
                 setCookie('last','myprofil');
+            }else if(this.response == "taken"){
+                failedConnection("Nom d'utilisateur deja pris !");
             }else{
-                alert("nope");
+                failedConnection("Une erreur s'est produite !");
             }
         };
         req1.send();

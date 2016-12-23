@@ -55,9 +55,9 @@ public class ProfileDao{
 							p.setProfilPicPath(path);
 					int pid = result.getInt("photos.id");
 					if(!result.wasNull())
-							p.addPhoto(new Photo().setId(pid));
+							p.addPhoto(new Photo().setId(pid).setTitle(result.getString("photos.titre")));
 					while(result.next()){
-						p.addPhoto(new Photo().setId(result.getInt("photos.id")));
+						p.addPhoto(new Photo().setId(result.getInt("photos.id")).setTitle(result.getString("photos.titre")));
 					}
 					return p;
 				}
@@ -78,5 +78,27 @@ public class ProfileDao{
 			throw new DaoRuntimeException("Exception raisend in the profileDao",e);
 		}
 	}
-	
+
+	public boolean updateProfileWithPhoto(String name, String desc, String profilPicPath) throws PhotoNetRuntimeException{
+		try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+			PreparedStatement stmt = connection.prepareStatement("UPDATE users SET description = ?, imageProfil = ? WHERE name = ?");
+			stmt.setString(3,name);
+			stmt.setString(1,desc);
+			stmt.setString(2, profilPicPath);
+			return stmt.executeUpdate() > 0;
+		}catch (SQLException e){
+			throw new DaoRuntimeException("Exception raisend in the profileDao",e);
+		}
+	}
+
+	public boolean updateProfile(String name, String desc) throws PhotoNetRuntimeException{
+		try(Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()){
+			PreparedStatement stmt = connection.prepareStatement("UPDATE users SET description = ? WHERE name = ?");
+			stmt.setString(2,name);
+			stmt.setString(1,desc);
+			return stmt.executeUpdate() > 0;
+		}catch (SQLException e){
+			throw new DaoRuntimeException("Exception raisend in the profileDao",e);
+		}
+	}
 }
